@@ -1,0 +1,50 @@
+{
+  "resourceType": "StudyDefinition",
+  "id": "123",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2023-01-01T00:00:00Z"
+  },
+  "condition": [
+    {
+      "text": "Non-Small Cell Lung Cancer (NSCLC)",
+      "coding": {
+        "code": "254637007",
+        "display": "Non-small cell lung cancer",
+        "system": "SNOMED",
+        "version": "2025-02-01"
+      }
+    },
+    {
+      "text": "Castrate Resistant Prostate Cancer (CRPC)",
+      "coding": {
+        "code": " 427492003",
+        "display": "Hormone refractory prostate cancer",
+        "system": "SNOMED",
+        "version": "2025-02-01"
+      }
+    },
+    {
+      "text": "Melanoma (MEL)",
+      "coding": {
+        "code": " 372244006",
+        "display": "Malignant melanoma",
+        "system": "SNOMED",
+        "version": "2025-02-01"
+      }
+    }
+  ],
+  "identifier": [
+    {
+      "value": "CA223-002",
+      "assigner": {
+        "display": "Bristol-Myers Squibb"
+      }
+    }
+  ],
+  "label": [
+    {
+      "value": "A Phase 1 Study of BMS-986015, an Anti-KIR Monoclonal Antibody, Administered With Ipilimumab, an Anti-CTLA4 Monoclonal Antibody, in Subjects With Select Advanced Solid Tumors"
+    }
+  ]
+}
