@@ -282,7 +282,7 @@
 							"id": "ClassAttr_43",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value",
 							"valueCode": {
-								"id": "Code_604_33",
+								"id": "Code_604_43",
 								"extensionAttributes": [],
 								"code": " 372244006",
 								"codeSystem": "SNOMED",
@@ -398,7 +398,7 @@
 			{   "id": "ExtensionArray_3",
 				"url": "//CDISC/expResponseNode",
 				"extensionAttributes": [
-				{"id": "ExtensionAttribute_3",
+				{"id": "ExtensionAttribute_3b",
 				 "url": "https://cdisc.org/usdm/extension-ExpResponseNode/classAttribute1",
 				 "valueExtensionClass":{
 						 "id": "ExtensionClass_ExpRespNode_1",
@@ -1660,7 +1660,7 @@
 				{
 					"id": "ExtTransAttr_2",
 					"url": "http://cdisc.org/usdm/extensions/extensionR-1/languages",
-					"extensionAtrtibutes": [
+					"extensionAttributes": [
 						{
 							"id": "extensionAttributes_3",
 							"url": "http://cdisc.org/usdm/extensions/extensionR-2/language",
@@ -1690,7 +1690,7 @@
 									"instanceType": "ExtensionAttribute"
 								}			
 								],
-								"instanceType": "extensionClass"
+								"instanceType": "ExtensionClass"
 							},
 							"instanceType": "ExtensionAttribute"
 						},
@@ -1723,7 +1723,7 @@
 										"instanceType": "ExtensionAttribute"
 									}		
 									],
-									"instanceType": "extensionCLass"
+									"instanceType": "ExtensionClass"
 								},
 							"instanceType": "ExtensionAttribute"
 							}
@@ -1821,7 +1821,7 @@
                     "extensionAttributes": [{
 						"id": "ExtTransAttr_3",
 						"url": "http://cdisc.org/usdm/extensions/extensionR-1/languages",
-						"extensionAtrtibutes": [
+						"extensionAttributes": [
 							{
 								"id": "extensionAttributes_5",
 								"url": "http://cdisc.org/usdm/extensions/extensionR-2/language",
@@ -1858,9 +1858,9 @@
 										"instanceType": "ExtensionAttribute"
 									}									
 									],
-									"instanceType": "extensionCLass"
+									"instanceType": "ExtensionClass"
 								},
-								"instanceType": "extensionAttribute"
+								"instanceType": "ExtensionAttribute"
 							},
 							{
 								"id": "extensionAttributes_6",
@@ -1898,7 +1898,7 @@
 											"instanceType": "ExtensionAttribute"
 										}										
 										],
-										"instanceType": "extensionCLass"
+										"instanceType": "ExtensionClass"
 									},
 								"instanceType": "ExtensionAttribute"
 								}
@@ -3142,7 +3142,7 @@
 								  "instanceType": "Code"
 								},
                       "relativeToFrom": {
-                      "id": "Code_21_2",
+                      "id": "Code_21_2_4",
                       "extensionAttributes": [],
                       "code": "C201355",
                       "codeSystem": "http://www.cdisc.org",
@@ -3474,7 +3474,7 @@
             "extensionAttributes": [{
 				"id": "ExtTransAttr_1",
 				"url": "http://cdisc.org/usdm/extensions/extensionR-1/languages",
-				"extensionAtrtibutes": [
+				"extensionAttributes": [
 				{
 					"id": "extensionAttributes_1",
 					"url": "http://cdisc.org/usdm/extensions/extensionR-2/language",
@@ -3511,7 +3511,7 @@
 							"instanceType": "ExtensionAttribute"
 						}			
 						],
-						"instanceType": "ExtensionCLass"
+						"instanceType": "ExtensionClass"
 					},
 					"instanceType": "ExtensionAttribute"
 				},
@@ -3551,7 +3551,7 @@
 								"instanceType": "ExtensionAttribute"
 							}			
 							],
-							"instanceType": "ExtensionCLass"
+							"instanceType": "ExtensionClass"
 						},
 					"instanceType": "ExtensionAttribute"
 					}
@@ -3799,7 +3799,6 @@
             },
             "identifierScheme": "DUNS",
             "identifier": "not available",
-            "legalAddress": null,
             "managedSites": [],
             "instanceType": "Organization"
           },
