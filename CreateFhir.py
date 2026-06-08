@@ -1,8 +1,11 @@
 import json
 import ast
+from unittest import result
 import jsonata
 import pandas as pd
 import re
+from collections.abc import Iterable
+from copy import deepcopy
 
 _QUOTED_STR_RE = re.compile(r"""
     (?:
@@ -24,7 +27,9 @@ def get_USDM_info(MapFile,USDMFile):
         
         for i, row in df.iterrows():
             USDM_Path= df.iloc[i, 1]     
-            USDM_Result=Parse_jsonata(codeSnip=USDM_Path,data=data)
+            USDM_Result=Parse_jsonata(codeSnip=USDM_Path,data=data,i=i)
+            #if i == 86:
+            #        print(f"Row {i}: USDM_Path='{USDM_Path}' -> USDM_Result='{USDM_Result}'"   )
             #print(f"Row {i}: USDM_Path='{USDM_Path}' -> USDM_Result='{USDM_Result}'"   )
             if USDM_Result is None: USDM_Result = " "
             if USDM_Result != " ":
@@ -34,9 +39,11 @@ def get_USDM_info(MapFile,USDMFile):
                     try:
                         x = ast.literal_eval(USDM_Result)
                        # print(f"Warning: Row {i} parsed via ast.literal_eval instead of JSON.")
+                        
                     except (ValueError, SyntaxError):
-                        print(f"Warning: Could not parse row {i} at all, skipping.")
-                   
+                        print(f"Warning: Could not parse row {i} at all, copied directly.")
+                        print(f"USDM_Result: {USDM_Result}")
+                        
                     
                 FHIR_resourcename= df.iloc[i, 2]
                 FHIR_path= df.iloc[i, 3]
@@ -50,7 +57,7 @@ def get_USDM_info(MapFile,USDMFile):
                 elif isinstance(x, list):
                     if all(isinstance(elem, str) for elem in x):
                         x = [{str(i): elem} for i, elem in enumerate(x)]
-
+                
                 for cell in x:
                     # extract the first key from the dict (value between brackets)
                     try:
@@ -68,24 +75,39 @@ def get_USDM_info(MapFile,USDMFile):
                         
     return ResultMap, RowIds
             
-def Parse_jsonata(codeSnip,data):
+def Parse_jsonata(codeSnip,data,i=0):
         if codeSnip is None:
             result = " "
         else:
             try:
                 expr = jsonata.Jsonata(codeSnip)
                 result = expr.evaluate(data)  
+                #if i == 86:
+                #    print(f"Row {i}: -> Result: {codeSnip} -> {result}")
             except:
-                result = "Error in expression " + codeSnip
+                result=" "
+                print(f"Error in expression {codeSnip}")
         if result is None: result = " "
         result= str(result)
         if result == "": result = " "
         if result == "{}": result = " "
-        try:
-             result0 = result.replace("'", '"')
-        except:
+        if result == "[]": result = " "
+        # if result[0] == "[" and result[-1] == "]":
+        #    result = result[1:-1]
+        if result.find('name="') != -1:
+             result0 = escapeTagRef(result)
+        else:
              result0 = result
         return result0
+
+def escapeTagRef(result):
+    res = result
+    # 1) Keep only the JSON part (optional, if you know there's extra text after ])
+    json_part = res[:res.rfind(']') + 1]
+    # 2) Escape the inner quotes in the HTML attributes (name="...") ONLY inside the JSON
+    #    This changes name="indic_1"  ->  name=\"indic_1\"
+    fixed = re.sub(r'name="([^"]+)"', r'name=\\"\1\\"', json_part)
+    return fixed
 
 def parse_semicolon_list_safe(s, drop_empty: bool = True):
     if s is None:
@@ -154,11 +176,12 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
         fhir_path_idx=fhir_path
         for m in range(len(subgroup)):
             sg=subgroup[m]
-            
             if m==0: 
                 sub_path=head_through_class(fhir_path, sg)
                 lookup_key = (sub_path, cell_id)
-                print(cell_id, idx, sub_path, sg, fhir_path, path)
+                #if sg=="characteristic":
+                #    print(cell_id, lookup_key,value)
+                    
                 # based id no per cell id, but on the subgrouping, so that all paths with the same subgrouping get the same index
                 if cell_id != prev_cell_id:
                     if lookup_key in cell_id_to_idx:
@@ -201,13 +224,14 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
             except:
                 fhir_path_idx=fhir_path_idx # No array path, use as is
         prev_cell_id = cell_id
-        pairs.append((fhir_path_idx, value))
+        if value is not None and value != "[]" and value != "{}" and value != " " and value != "":
+            pairs.append((fhir_path_idx, value))
             
     x = paths_to_json(pairs)
     fhir_resource.update(x)
     return fhir_resource
 
-def create_fhir_output(fhir_resources, output_file="file.json"):
+def create_fhir_output_old(fhir_resources, output_file="file.json"):
     # Wrap in FHIR Bundle container
     entries = [{"resource": res} for res in fhir_resources]
 
@@ -220,13 +244,47 @@ def create_fhir_output(fhir_resources, output_file="file.json"):
     json.dump(fhir_bundle, open(output_file, "w"), indent=2)
     print(f"FHIR bundle saved to {output_file}")
 
+def create_fhir_output(fhir_resources, output_file="file.json"):
+    """
+    fhir_resources: list of FHIR resources (dicts)
+      resourceType ∈ {"ResearchStudy", "Location", "Group", ...}
+    All Location and Group resources are moved into the `contained` array
+    of the first ResearchStudy in the list. All resources (including that
+    ResearchStudy) are still present as top‑level bundle entries.
+    """
+    # Separate resources by type
+    research_studies = [r for r in fhir_resources
+                        if r.get("resourceType") == "ResearchStudy"]
+    contained_candidates = [r for r in fhir_resources
+                            if r.get("resourceType") != "ResearchStudy"]
+    # If there is at least one ResearchStudy, attach contained resources
+    if research_studies and contained_candidates:
+        main_rs = research_studies[0]  # pick the first; adjust if needed
+        # Ensure we don't mutate the original list (optional)
+        main_rs = main_rs  # already a dict; fine to mutate if you want
+        # Initialize / extend contained
+        existing_contained = main_rs.get("contained", [])
+        # You may want deep copies so changes to contained don't affect originals
+        existing_contained.extend(deepcopy(contained_candidates))
+        main_rs["contained"] = existing_contained
+    # Build bundle entries from (possibly modified) list
+    entries = [{"resource": res} for res in fhir_resources]
+    fhir_bundle = {
+        "resourceType": "Bundle",
+        "type": "collection",
+        "entry": entries
+    }
+    with open(output_file, "w") as f:
+        json.dump(fhir_bundle, f, indent=2)
+    print(f"FHIR bundle saved to {output_file}")
+
 def create_fhir_resources(result_map, row_ids,output_file="file.json"):
-    StudyDef_map = [item for item in result_map if item[4] == "StudyDefinition"]
+    StudyDef_map = [item for item in result_map if item[4] == "ResearchStudy"]
     MyResources=[]
     MyResource=create_fhir_resource(
         StudyDef_map,
         row_ids,
-        "StudyDefinition",
+        "ResearchStudy",
         {
             "id": args.id,
             "versionId": args.version,
@@ -234,15 +292,39 @@ def create_fhir_resources(result_map, row_ids,output_file="file.json"):
         }
     )
     MyResources.append(MyResource)
+    MainGroup_map = [item for item in result_map if item[4] == "Group-all"]
+    MyResource=create_fhir_resource(
+        MainGroup_map,
+        row_ids,
+        "Group",
+        {   "versionId": args.version,
+            "lastUpdated": args.updated
+        }
+    )
+    MyResources.append(MyResource)
     StudyGroup_map = [item for item in result_map if item[4] == "Group"]
     for i in row_ids:
-        studySubGroup_map=[]
         StudySubGroup_map = [item for item in StudyGroup_map if item[0]==i]
         if StudySubGroup_map != []:
             MyResource=create_fhir_resource(
             StudySubGroup_map,
             row_ids,
             "Group",
+                {
+                    "versionId": args.version,
+                    "lastUpdated": args.updated
+                }
+                 )
+            
+            MyResources.append(MyResource)
+    Location_map = [item for item in result_map if item[4] == "Location"]
+    for i in row_ids:
+        StudySubGroup_map = [item for item in Location_map if item[0]==i]
+        if StudySubGroup_map != []:
+            MyResource=create_fhir_resource(
+            StudySubGroup_map,
+            row_ids,
+            "Location",
                 {
                     "versionId": args.version,
                     "lastUpdated": args.updated
@@ -323,7 +405,12 @@ def paths_to_json(path_value_pairs: list[tuple[str, any]]) -> dict:
                     obj[key].append({})
                 obj = obj[key]
             elif isinstance(key, int):
-                obj = obj[key]
+                try:
+                    #print(obj)
+                    #print(f"Accessing index {key} in list at path segment '{keys[i-1]}'")
+                    obj = obj[key]
+                except (IndexError, TypeError):
+                    raise ValueError(f"Invalid index {key} for path segment '{key}'")
             else: 
                 if key not in obj:
                     obj[key] = {}
@@ -357,6 +444,31 @@ def paths_to_json(path_value_pairs: list[tuple[str, any]]) -> dict:
     
     return result
 
+def explode_result_map(result_map):
+    """
+    Take a list of 5-tuples:
+        (cell_id, target_path, target_group, value, resource)
+    and expand entries where 'value' is a list (or other iterable except str)
+    into one tuple per item in the list.
+    Example:
+      ('Ext_1', 'characteristic.description', 'characteristic',
+       ['A', 'B', 'C'], 'Group')
+    becomes:
+      ('Ext_1', 'characteristic.description', 'characteristic', 'A', 'Group')
+      ('Ext_1', 'characteristic.description', 'characteristic', 'B', 'Group')
+      ('Ext_1', 'characteristic.description', 'characteristic', 'C', 'Group')
+    """
+    exploded = []
+    for cell_id, target_path, target_group, value, resource in result_map:
+        # treat None / nan specially if you want; here we just pass them through
+        if isinstance(value, str) or not isinstance(value, Iterable):
+            # scalar or non-iterable: keep as-is
+            exploded.append((cell_id, target_path, target_group, value, resource))
+        else:
+            # iterable (e.g. list, tuple, etc.): create one entry per item
+            for v in value:
+                exploded.append((cell_id, target_path, target_group, v, resource))
+    return exploded
 
 #map_file = "Map/USDM2FHIR.csv"
 #usdm_file = "Input/NCT01750580_limited_tagged_resp.json"
@@ -402,5 +514,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     # Run your existing logic
     result_map, row_ids = get_USDM_info(args.map, args.usdm)
+    result_map = explode_result_map(result_map)
     create_fhir_resources(result_map, row_ids,args.output)
     

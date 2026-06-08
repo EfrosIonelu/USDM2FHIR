@@ -116,6 +116,21 @@
 							"valueId": "BiomedicalConcept_08",  
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_8",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory",
+							"valueCode": {
+								  "id": "Ext_Code_639_0",
+								  "extensionAttributes": [],
+								  "code": "C25532",
+								  "codeSystem": "http://www.cdisc.org",
+								  "codeSystemVersion": "2025-09-26",
+								  "decode": "INCLUSION",
+								  "instanceType": "Code"
+								},  
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
 						}
 						],
 						"instanceType": "ExtensionClass"
@@ -182,6 +197,21 @@
 							"id": "ClassAttr_27",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-forAssessment",
 							"valueId": "BiomedicalConcept_35",  
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_28",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory",
+							"valueCode": {
+								  "id": "Ext_Code_639_2",
+								  "extensionAttributes": [],
+								  "code": "C25532",
+								  "codeSystem": "http://www.cdisc.org",
+								  "codeSystemVersion": "2025-09-26",
+								  "decode": "INCLUSION",
+								  "instanceType": "Code"
+								},  
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						}
@@ -252,6 +282,21 @@
 							"valueId": "BiomedicalConcept_35",  
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_38",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory",
+							"valueCode": {
+								  "id": "Ext_Code_639_3",
+								  "extensionAttributes": [],
+								  "code": "C25532",
+								  "codeSystem": "http://www.cdisc.org",
+								  "codeSystemVersion": "2025-09-26",
+								  "decode": "INCLUSION",
+								  "instanceType": "Code"
+								},  
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
 						}
 						],
 						"instanceType": "ExtensionClass"
@@ -318,6 +363,21 @@
 							"id": "ClassAttr_47",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-forAssessment",
 							"valueId": "BiomedicalConcept_35",  
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_48",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory",
+							"valueCode": {
+								  "id": "Ext_Code_639_4",
+								  "extensionAttributes": [],
+								  "code": "C25532",
+								  "codeSystem": "http://www.cdisc.org",
+								  "codeSystemVersion": "2025-09-26",
+								  "decode": "INCLUSION",
+								  "instanceType": "Code"
+								},  
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						}
@@ -388,6 +448,21 @@
 							"valueId": "BiomedicalConcept_35",  
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_58",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory",
+							"valueCode": {
+								  "id": "Ext_Code_639_5",
+								  "extensionAttributes": [],
+								  "code": "C25370",
+								  "codeSystem": "http://www.cdisc.org",
+								  "codeSystemVersion": "2025-09-26",
+								  "decode": "EXCLUSION",
+								  "instanceType": "Code"
+								},  
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
 						}
 						],
 						"instanceType": "ExtensionClass"
@@ -413,7 +488,8 @@
 						},
 						{
 							"id": "ClassAttr_903",
-							"url": "https://cdisc.org/usdm/extension-ExpResponseNode-1/array-responses",							"extensionAttributes": [
+							"url": "https://cdisc.org/usdm/extension-ExpResponseNode-1/array-responses",							
+							"extensionAttributes": [
 								{
 								"id": "ClassAttr_90301",
 								"url": "https://cdisc.org/usdm/extension-ExpResponseNode-1/response-reference",

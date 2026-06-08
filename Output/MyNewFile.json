@@ -4,7 +4,7 @@
   "entry": [
     {
       "resource": {
-        "resourceType": "StudyDefinition",
+        "resourceType": "ResearchStudy",
         "id": "123",
         "meta": {
           "versionId": "1",
@@ -253,8 +253,335 @@
             }
           }
         ],
+        "recruitment": [
+          {
+            "eligibility": "eligibility-criteria"
+          }
+        ],
         "site": [
           {
+            "reference": "MS001"
+          },
+          {
+            "reference": "MS002"
+          },
+          {
+            "reference": "MS003"
+          },
+          {
+            "reference": "MS004"
+          },
+          {
+            "reference": "MS005"
+          },
+          {
+            "reference": "MS006"
+          }
+        ],
+        "title": [
+          "A Phase 1 Study of BMS-986015, an Anti-KIR Monoclonal Antibody, Administered With Ipilimumab, an Anti-CTLA4 Monoclonal Antibody, in Subjects With Select Advanced Solid Tumors"
+        ],
+        "contained": [
+          {
+            "resourceType": "Group",
+            "id": "eligibility-criteria",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
+            "characteristic": [
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p>Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:<usdm:tag name=\"indic_1\"/>, <usdm:tag name=\"indic_2\"/>, <usdm:tag name=\"indic_3\"/></p>",
+                "valueReference": {
+                  "reference": "ExtensionClass_ExpRespNode_1",
+                  "type": "Group"
+                }
+              },
+              {
+                "exclude": true,
+                "valueCodeableConcept": "<p>Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease</p>"
+              },
+              {
+                "exclude": true,
+                "valueCodeableConcept": "<p>Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody</p>"
+              },
+              {
+                "exclude": true,
+                "valueCodeableConcept": "<p>Grade 2 <usdm:tag name=\"contraIndic_2\"/></p>"
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p>At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per <usdm:tag name=\"bc_recist_1\"/></p>"
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p>Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk</p>"
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p><usdm:tag name=\"bc_ecog_1\"/> of 0 or 1</p>",
+                "valueReference": {
+                  "reference": "ExtensionClass_ExpResp_1",
+                  "type": "Group"
+                }
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p>Estimated life expectancy of >= 12 weeks</p>"
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p><usdm:tag name=\"bc_wbc_1\"/> &gt;=2000/&#181;L, <usdm:tag name=\"bc_neut_1\"/> &gt;=1500/&#181;L, <usdm:tag name=\"bc_plat_1\"/> &gt;= 100x1000/&#181;L, <usdm:tag name=\"bc_hgb_1\"/> &gt;= 8.5 g/dL, <usdm:tag name=\"bc_crcl_1\"/> &lt;= 1.5 X upper limit of normal (ULN) mL/min, <usdm:tag name=\"bc_alt_1\"/> and <usdm:tag name=\"bc_ast_1\"/> &lt;= 3x ULN</p>"
+              },
+              {
+                "exclude": false,
+                "valueCodeableConcept": "<p>Normal <usdm:tag name=\"bcCat_thyr_1\"/> or be on stable hormone supplementation</p>"
+              },
+              {
+                "exclude": true,
+                "valueCodeableConcept": "<p>Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint</p>"
+              },
+              {
+                "exclude": true,
+                "valueCodeableConcept": "<p>Subjects with known or suspected <usdm:tag name=\"contraIndic_1\"/></p>",
+                "valueReference": {
+                  "reference": "ExtensionClass_ExpResp_5",
+                  "type": "Group"
+                }
+              }
+            ],
+            "combinationMethod": "all-of"
+          },
+          {
+            "resourceType": "Group",
+            "id": "ExtensionClass_ExpRespNode_1",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
+            "characteristic": [
+              {
+                "code": {
+                  "coding": {
+                    "code": "75323-6",
+                    "display": "Condition",
+                    "system": "http://loinc.org"
+                  }
+                },
+                "description": "Solid tumor: Non-small cell lung cancer (NSCLC))",
+                "exclude": false,
+                "relativeTime": {
+                  "contextCode": {
+                    "coding": {
+                      "code": "709491003",
+                      "display": "Enrollment in clinical trial",
+                      "system": "http://snomed.info/sct"
+                    }
+                  },
+                  "offsetRange": {
+                    "high": {
+                      "unit": "d",
+                      "value": 0
+                    },
+                    "low": {
+                      "unit": "d",
+                      "value": -43800
+                    }
+                  }
+                },
+                "valueCodeableConcept": {
+                  "coding": {
+                    "code": "254637007",
+                    "display": "Non-small cell lung cancer",
+                    "system": "SNOMED"
+                  }
+                }
+              },
+              {
+                "code": {
+                  "coding": {
+                    "code": "75323-6",
+                    "display": "Condition",
+                    "system": "http://loinc.org"
+                  }
+                },
+                "description": "Solid tumor: Castrate Resistant Prostate Cancer (CRPC)",
+                "exclude": false,
+                "relativeTime": {
+                  "contextCode": {
+                    "coding": {
+                      "code": "709491003",
+                      "display": "Enrollment in clinical trial",
+                      "system": "http://snomed.info/sct"
+                    }
+                  },
+                  "offsetRange": {
+                    "high": {
+                      "unit": "d",
+                      "value": 0
+                    },
+                    "low": {
+                      "unit": "d",
+                      "value": -43800
+                    }
+                  }
+                },
+                "valueCodeableConcept": {
+                  "coding": {
+                    "code": " 427492003",
+                    "display": "Hormone refractory prostate cancer",
+                    "system": "SNOMED"
+                  }
+                }
+              },
+              {
+                "code": {
+                  "coding": {
+                    "code": "75323-6",
+                    "display": "Condition",
+                    "system": "http://loinc.org"
+                  }
+                },
+                "description": "Solid tumor: Melanoma (MEL)",
+                "exclude": false,
+                "relativeTime": {
+                  "contextCode": {
+                    "coding": {
+                      "code": "709491003",
+                      "display": "Enrollment in clinical trial",
+                      "system": "http://snomed.info/sct"
+                    }
+                  },
+                  "offsetRange": {
+                    "high": {
+                      "unit": "d",
+                      "value": 0
+                    },
+                    "low": {
+                      "unit": "d",
+                      "value": -43800
+                    }
+                  }
+                },
+                "valueCodeableConcept": {
+                  "coding": {
+                    "code": " 372244006",
+                    "display": "Malignant melanoma",
+                    "system": "SNOMED"
+                  }
+                }
+              }
+            ],
+            "combinationMethod": "all-of",
+            "description": "Node"
+          },
+          {
+            "resourceType": "Group",
+            "id": "ExtensionClass_ExpResp_1",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
+            "characteristic": [
+              {
+                "code": {
+                  "coding": {
+                    "code": "89247-1",
+                    "display": "ECOG Performance Status Score",
+                    "system": "http://loinc.org"
+                  }
+                },
+                "description": "ECOG of 0 or 1",
+                "exclude": false,
+                "relativeTime": {
+                  "contextCode": {
+                    "coding": {
+                      "code": "709491003",
+                      "display": "Enrollment in clinical trial",
+                      "system": "http://snomed.info/sct"
+                    }
+                  },
+                  "offsetRange": {
+                    "high": {
+                      "unit": "d",
+                      "value": 0
+                    },
+                    "low": {
+                      "unit": "d",
+                      "value": -28
+                    }
+                  }
+                },
+                "valueRange": {
+                  "high": {
+                    "value": 1
+                  },
+                  "low": {
+                    "value": 0
+                  }
+                }
+              }
+            ],
+            "combinationMethod": "all-of",
+            "description": "ECOG 0-1"
+          },
+          {
+            "resourceType": "Group",
+            "id": "ExtensionClass_ExpResp_5",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
+            "characteristic": [
+              {
+                "code": {
+                  "coding": {
+                    "code": "75323-6",
+                    "display": "Condition",
+                    "system": "http://loinc.org"
+                  }
+                },
+                "description": "Brain metastasis",
+                "exclude": true,
+                "relativeTime": {
+                  "contextCode": {
+                    "coding": {
+                      "code": "709491003",
+                      "display": "Enrollment in clinical trial",
+                      "system": "http://snomed.info/sct"
+                    }
+                  },
+                  "offsetRange": {
+                    "high": {
+                      "unit": "d",
+                      "value": 0
+                    },
+                    "low": {
+                      "unit": "d",
+                      "value": -43800
+                    }
+                  }
+                },
+                "valueCodeableConcept": {
+                  "coding": {
+                    "code": "94225005",
+                    "display": "Metastatic malignant neoplasm to brain",
+                    "system": "SNOMED"
+                  }
+                }
+              }
+            ],
+            "combinationMethod": "all-of",
+            "description": "Brain Metastasis"
+          },
+          {
+            "resourceType": "Location",
+            "id": "MS001",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
@@ -262,6 +589,12 @@
             "type": "location"
           },
           {
+            "resourceType": "Location",
+            "id": "MS002",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
@@ -269,6 +602,12 @@
             "type": "location"
           },
           {
+            "resourceType": "Location",
+            "id": "MS003",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
@@ -276,6 +615,12 @@
             "type": "location"
           },
           {
+            "resourceType": "Location",
+            "id": "MS004",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
@@ -283,6 +628,12 @@
             "type": "location"
           },
           {
+            "resourceType": "Location",
+            "id": "MS005",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
@@ -290,16 +641,217 @@
             "type": "location"
           },
           {
+            "resourceType": "Location",
+            "id": "MS006",
+            "meta": {
+              "versionId": "1",
+              "lastUpdated": "2023-01-01T00:00:00Z"
+            },
             "address": {
               "country": "USA"
             },
             "name": "Sarah Cannon Research Institute",
             "type": "location"
           }
-        ],
-        "title": [
-          "A Phase 1 Study of BMS-986015, an Anti-KIR Monoclonal Antibody, Administered With Ipilimumab, an Anti-CTLA4 Monoclonal Antibody, in Subjects With Select Advanced Solid Tumors"
         ]
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Group",
+        "id": "eligibility-criteria",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "characteristic": [
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p>Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:<usdm:tag name=\"indic_1\"/>, <usdm:tag name=\"indic_2\"/>, <usdm:tag name=\"indic_3\"/></p>",
+            "valueReference": {
+              "reference": "ExtensionClass_ExpRespNode_1",
+              "type": "Group"
+            }
+          },
+          {
+            "exclude": true,
+            "valueCodeableConcept": "<p>Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease</p>"
+          },
+          {
+            "exclude": true,
+            "valueCodeableConcept": "<p>Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody</p>"
+          },
+          {
+            "exclude": true,
+            "valueCodeableConcept": "<p>Grade 2 <usdm:tag name=\"contraIndic_2\"/></p>"
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p>At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per <usdm:tag name=\"bc_recist_1\"/></p>"
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p>Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk</p>"
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p><usdm:tag name=\"bc_ecog_1\"/> of 0 or 1</p>",
+            "valueReference": {
+              "reference": "ExtensionClass_ExpResp_1",
+              "type": "Group"
+            }
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p>Estimated life expectancy of >= 12 weeks</p>"
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p><usdm:tag name=\"bc_wbc_1\"/> &gt;=2000/&#181;L, <usdm:tag name=\"bc_neut_1\"/> &gt;=1500/&#181;L, <usdm:tag name=\"bc_plat_1\"/> &gt;= 100x1000/&#181;L, <usdm:tag name=\"bc_hgb_1\"/> &gt;= 8.5 g/dL, <usdm:tag name=\"bc_crcl_1\"/> &lt;= 1.5 X upper limit of normal (ULN) mL/min, <usdm:tag name=\"bc_alt_1\"/> and <usdm:tag name=\"bc_ast_1\"/> &lt;= 3x ULN</p>"
+          },
+          {
+            "exclude": false,
+            "valueCodeableConcept": "<p>Normal <usdm:tag name=\"bcCat_thyr_1\"/> or be on stable hormone supplementation</p>"
+          },
+          {
+            "exclude": true,
+            "valueCodeableConcept": "<p>Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint</p>"
+          },
+          {
+            "exclude": true,
+            "valueCodeableConcept": "<p>Subjects with known or suspected <usdm:tag name=\"contraIndic_1\"/></p>",
+            "valueReference": {
+              "reference": "ExtensionClass_ExpResp_5",
+              "type": "Group"
+            }
+          }
+        ],
+        "combinationMethod": "all-of"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Group",
+        "id": "ExtensionClass_ExpRespNode_1",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "characteristic": [
+          {
+            "code": {
+              "coding": {
+                "code": "75323-6",
+                "display": "Condition",
+                "system": "http://loinc.org"
+              }
+            },
+            "description": "Solid tumor: Non-small cell lung cancer (NSCLC))",
+            "exclude": false,
+            "relativeTime": {
+              "contextCode": {
+                "coding": {
+                  "code": "709491003",
+                  "display": "Enrollment in clinical trial",
+                  "system": "http://snomed.info/sct"
+                }
+              },
+              "offsetRange": {
+                "high": {
+                  "unit": "d",
+                  "value": 0
+                },
+                "low": {
+                  "unit": "d",
+                  "value": -43800
+                }
+              }
+            },
+            "valueCodeableConcept": {
+              "coding": {
+                "code": "254637007",
+                "display": "Non-small cell lung cancer",
+                "system": "SNOMED"
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": {
+                "code": "75323-6",
+                "display": "Condition",
+                "system": "http://loinc.org"
+              }
+            },
+            "description": "Solid tumor: Castrate Resistant Prostate Cancer (CRPC)",
+            "exclude": false,
+            "relativeTime": {
+              "contextCode": {
+                "coding": {
+                  "code": "709491003",
+                  "display": "Enrollment in clinical trial",
+                  "system": "http://snomed.info/sct"
+                }
+              },
+              "offsetRange": {
+                "high": {
+                  "unit": "d",
+                  "value": 0
+                },
+                "low": {
+                  "unit": "d",
+                  "value": -43800
+                }
+              }
+            },
+            "valueCodeableConcept": {
+              "coding": {
+                "code": " 427492003",
+                "display": "Hormone refractory prostate cancer",
+                "system": "SNOMED"
+              }
+            }
+          },
+          {
+            "code": {
+              "coding": {
+                "code": "75323-6",
+                "display": "Condition",
+                "system": "http://loinc.org"
+              }
+            },
+            "description": "Solid tumor: Melanoma (MEL)",
+            "exclude": false,
+            "relativeTime": {
+              "contextCode": {
+                "coding": {
+                  "code": "709491003",
+                  "display": "Enrollment in clinical trial",
+                  "system": "http://snomed.info/sct"
+                }
+              },
+              "offsetRange": {
+                "high": {
+                  "unit": "d",
+                  "value": 0
+                },
+                "low": {
+                  "unit": "d",
+                  "value": -43800
+                }
+              }
+            },
+            "valueCodeableConcept": {
+              "coding": {
+                "code": " 372244006",
+                "display": "Malignant melanoma",
+                "system": "SNOMED"
+              }
+            }
+          }
+        ],
+        "combinationMethod": "all-of",
+        "description": "Node"
       }
     },
     {
@@ -310,18 +862,18 @@
           "versionId": "1",
           "lastUpdated": "2023-01-01T00:00:00Z"
         },
-        "characteristic": {
-          "code": {
-            "coding": {
-              "code": "89247-1",
-              "display": "ECOG Performance Status Score",
-              "system": "http://loinc.org"
-            }
-          },
-          "description": "ECOG of 0 or 1",
-          "exclude": false,
-          "relativeTime": [
-            {
+        "characteristic": [
+          {
+            "code": {
+              "coding": {
+                "code": "89247-1",
+                "display": "ECOG Performance Status Score",
+                "system": "http://loinc.org"
+              }
+            },
+            "description": "ECOG of 0 or 1",
+            "exclude": false,
+            "relativeTime": {
               "contextCode": {
                 "coding": {
                   "code": "709491003",
@@ -339,168 +891,19 @@
                   "value": -28
                 }
               }
-            }
-          ],
-          "valueRange": {
-            "high": {
-              "value": 1
             },
-            "low": {
-              "value": 0
+            "valueRange": {
+              "high": {
+                "value": 1
+              },
+              "low": {
+                "value": 0
+              }
             }
           }
-        },
+        ],
+        "combinationMethod": "all-of",
         "description": "ECOG 0-1"
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "Group",
-        "id": "ExtensionClass_ExpResp_2",
-        "meta": {
-          "versionId": "1",
-          "lastUpdated": "2023-01-01T00:00:00Z"
-        },
-        "characteristic": {
-          "code": {
-            "coding": {
-              "code": "75323-6",
-              "display": "Condition",
-              "system": "http://loinc.org"
-            }
-          },
-          "description": "Solid tumor: Non-small cell lung cancer (NSCLC))",
-          "exclude": false,
-          "relativeTime": [
-            {
-              "contextCode": {
-                "coding": {
-                  "code": "709491003",
-                  "display": "Enrollment in clinical trial",
-                  "system": "http://snomed.info/sct"
-                }
-              },
-              "offsetRange": {
-                "high": {
-                  "unit": "d",
-                  "value": 0
-                },
-                "low": {
-                  "unit": "d",
-                  "value": -43800
-                }
-              }
-            }
-          ],
-          "valueCodeableConcept": {
-            "coding": {
-              "code": "254637007",
-              "display": "Non-small cell lung cancer",
-              "system": "SNOMED"
-            }
-          }
-        },
-        "description": "Non-Small Cell Lung Cancer (NSCLC)"
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "Group",
-        "id": "ExtensionClass_ExpResp_3",
-        "meta": {
-          "versionId": "1",
-          "lastUpdated": "2023-01-01T00:00:00Z"
-        },
-        "characteristic": {
-          "code": {
-            "coding": {
-              "code": "75323-6",
-              "display": "Condition",
-              "system": "http://loinc.org"
-            }
-          },
-          "description": "Solid tumor: Castrate Resistant Prostate Cancer (CRPC)",
-          "exclude": false,
-          "relativeTime": [
-            {
-              "contextCode": {
-                "coding": {
-                  "code": "709491003",
-                  "display": "Enrollment in clinical trial",
-                  "system": "http://snomed.info/sct"
-                }
-              },
-              "offsetRange": {
-                "high": {
-                  "unit": "d",
-                  "value": 0
-                },
-                "low": {
-                  "unit": "d",
-                  "value": -43800
-                }
-              }
-            }
-          ],
-          "valueCodeableConcept": {
-            "coding": {
-              "code": " 427492003",
-              "display": "Hormone refractory prostate cancer",
-              "system": "SNOMED"
-            }
-          }
-        },
-        "description": "Castrate Resistant Prostate Cancer (CRPC)"
-      }
-    },
-    {
-      "resource": {
-        "resourceType": "Group",
-        "id": "ExtensionClass_ExpResp_4",
-        "meta": {
-          "versionId": "1",
-          "lastUpdated": "2023-01-01T00:00:00Z"
-        },
-        "characteristic": {
-          "code": {
-            "coding": {
-              "code": "75323-6",
-              "display": "Condition",
-              "system": "http://loinc.org"
-            }
-          },
-          "description": "Solid tumor: Melanoma (MEL)",
-          "exclude": false,
-          "relativeTime": [
-            {
-              "contextCode": {
-                "coding": {
-                  "code": "709491003",
-                  "display": "Enrollment in clinical trial",
-                  "system": "http://snomed.info/sct"
-                }
-              },
-              "offsetRange": {
-                "high": {
-                  "unit": "d",
-                  "value": 0
-                },
-                "low": {
-                  "unit": "d",
-                  "value": -43800
-                }
-              }
-            }
-          ],
-          "valueCodeableConcept": {
-            "coding": {
-              "code": " 372244006",
-              "display": "Malignant melanoma",
-              "system": "SNOMED"
-            }
-          }
-        },
-        "description": "Melanoma (MEL)"
       }
     },
     {
@@ -511,18 +914,18 @@
           "versionId": "1",
           "lastUpdated": "2023-01-01T00:00:00Z"
         },
-        "characteristic": {
-          "code": {
-            "coding": {
-              "code": "75323-6",
-              "display": "Condition",
-              "system": "http://loinc.org"
-            }
-          },
-          "description": "Brain metastasis",
-          "exclude": true,
-          "relativeTime": [
-            {
+        "characteristic": [
+          {
+            "code": {
+              "coding": {
+                "code": "75323-6",
+                "display": "Condition",
+                "system": "http://loinc.org"
+              }
+            },
+            "description": "Brain metastasis",
+            "exclude": true,
+            "relativeTime": {
               "contextCode": {
                 "coding": {
                   "code": "709491003",
@@ -540,48 +943,108 @@
                   "value": -43800
                 }
               }
-            }
-          ],
-          "valueCodeableConcept": {
-            "coding": {
-              "code": "94225005",
-              "display": "Metastatic malignant neoplasm to brain",
-              "system": "SNOMED"
+            },
+            "valueCodeableConcept": {
+              "coding": {
+                "code": "94225005",
+                "display": "Metastatic malignant neoplasm to brain",
+                "system": "SNOMED"
+              }
             }
           }
-        },
+        ],
+        "combinationMethod": "all-of",
         "description": "Brain Metastasis"
       }
     },
     {
       "resource": {
-        "resourceType": "Group",
-        "id": "ExtensionClass_ExpRespNode_1",
+        "resourceType": "Location",
+        "id": "MS001",
         "meta": {
           "versionId": "1",
           "lastUpdated": "2023-01-01T00:00:00Z"
         },
-        "characteristic": [
-          {
-            "valueReference": {
-              "reference": "ExtensionClass_ExpResp_2",
-              "type": "Group"
-            }
-          },
-          {
-            "valueReference": {
-              "reference": "ExtensionClass_ExpResp_3",
-              "type": "Group"
-            }
-          },
-          {
-            "valueReference": {
-              "reference": "ExtensionClass_ExpResp_4",
-              "type": "Group"
-            }
-          }
-        ],
-        "combinationMethod": "all-of"
+        "address": {
+          "country": "USA"
+        },
+        "name": "H. Lee Moffitt Cancer Center and Research Institute",
+        "type": "location"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "MS002",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "address": {
+          "country": "USA"
+        },
+        "name": "Dana Farber Cancer Institute",
+        "type": "location"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "MS003",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "address": {
+          "country": "USA"
+        },
+        "name": "University of Minnesota",
+        "type": "location"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "MS004",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "address": {
+          "country": "USA"
+        },
+        "name": "Memorial Sloan Kettering Cancer Ctr",
+        "type": "location"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "MS005",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "address": {
+          "country": "USA"
+        },
+        "name": "THe Ohio State University",
+        "type": "location"
+      }
+    },
+    {
+      "resource": {
+        "resourceType": "Location",
+        "id": "MS006",
+        "meta": {
+          "versionId": "1",
+          "lastUpdated": "2023-01-01T00:00:00Z"
+        },
+        "address": {
+          "country": "USA"
+        },
+        "name": "Sarah Cannon Research Institute",
+        "type": "location"
       }
     }
   ]
