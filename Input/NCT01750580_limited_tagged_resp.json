@@ -519,8 +519,97 @@
 					},
 				 "instanceType": "ExtensionAttribute"
 				}],
+				"instanceType": "ExtensionAttribute"},
+				
+			{   "id": "ExtensionArray_4",
+				"url": "//CDISC/studyProgressStatus",
+				"extensionAttributes": [
+				{"id": "ExtensionAttribute_4b",
+				 "url": "https://cdisc.org/usdm/extension-studyProgressStatus/classAttribute1",
+				 "valueExtensionClass":{
+						 "id": "Status_001",
+						 "url": "https://cdisc.org/usdm/extension-studyProgressStatus/class1",
+						 "extensionAttributes": [
+						{
+							"id": "ClassAttr_10902",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-state",
+							"valueCode": {
+								  "id": "Ext_Code_10902",
+								  "extensionAttributes": [],
+								  "code": "overall-study",
+								  "codeSystem": "http://terminology.hl7.org/CodeSystem/research-study-status",
+								  "codeSystemVersion": "na",
+								  "decode": "Overall Study",
+								  "instanceType": "Code"
+								},
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_10903",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-isActive",
+							"valueBoolean": true,
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_10904",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-startDate",
+							"valueString": "2012-12",
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_10905",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-endDate",
+							"valueString": "2015-04",
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						}],
+						"instanceType": "ExtensionClass"
+					},
+				 "instanceType": "ExtensionAttribute"
+				},
+				{"id": "ExtensionAttribute_4c",
+				 "url": "https://cdisc.org/usdm/extension-studyProgressStatus/classAttribute1",
+				 "valueExtensionClass":{
+						 "id": "Status_011",
+						 "url": "https://cdisc.org/usdm/extension-studyProgressStatus/class1",
+						 "extensionAttributes": [
+						{
+							"id": "ClassAttr_10912",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-state",
+							"valueCode": {
+								  "id": "Ext_Code_10912",
+								  "extensionAttributes": [],
+								  "code": "completed",
+								  "codeSystem": "http://terminology.hl7.org/CodeSystem/research-study-status",
+								  "codeSystemVersion": "na",
+								  "decode": "Completed",
+								  "instanceType": "Code"
+								},
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_10913",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-isActive",
+							"valueBoolean": true,
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "ClassAttr_10904",
+							"url": "https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-startDate",
+							"valueString": "2015-04",
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						}],
+						"instanceType": "ExtensionClass"
+					},
+				 "instanceType": "ExtensionAttribute"
+				}],
 				"instanceType": "ExtensionAttribute"}
-		
 			
 		],
 			

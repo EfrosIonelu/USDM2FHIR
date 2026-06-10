@@ -37,14 +37,21 @@ Endpoints,study.versions.studyDesigns.objectives@$ob.$ob.endpoints.{$ob.id: text
 Endpoint level,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints.(
     $firstWord := function($s) {$split($s, "" "")[0]};
     $titleCase := function($s) {$join($split($lowercase($s), "" "")@$w.($uppercase($substring($w, 0, 1)) & $substring($w, 1)),"" "")};
-{$ob.id: {""code:"":$lowercase($firstWord(level.decode)), ""display"": $titleCase($firstWord(level.decode)), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-objective-type""}})",ResearchStudy,objective.outcomeMeasure.type.coding,objective;outcomeMeasure,Endpoint,level
+{$ob.id: {""code"":$lowercase($firstWord(level.decode)), ""display"": $titleCase($firstWord(level.decode)), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-objective-type""}})",ResearchStudy,objective.outcomeMeasure.type.coding,objective;outcomeMeasure,Endpoint,level
 purpose _ intent,"study.versions.studyDesigns.intentTypes.(
     $FCod := function($c){$replace($lowercase($c), "" "", ""-"")};
     $titleCase := function($s) {$join($split($lowercase($s), "" "")@$w.($uppercase($substring($w, 0, 1)) & $substring($w, 1)),"" "")};
 {id: {""code"": $FCod(decode), ""display"": $titleCase(decode), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type""}})",ResearchStudy,purposeType.coding,purposeType,,
 Study Phase,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].
 {id: {""code"": code, ""display"": decode, ""system"": codeSystem}}",ResearchStudy,phase.coding,phase,StudyDesign,studyPhase
-location reference,study.versions.organizations.managedSites.{id: id},ResearchStudy,site.reference,site,StudySite,id
+progress status,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.$rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-state""].
+{$rp.id:{""code"": valueCode.code, ""display"": valueCode.decode, ""system"": valueCode.codeSystem}}",ResearchStudy,progressStatus.state.coding,progressStatus,extension studyProgressStatus,state
+progress status actual,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.$rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-isActive""].
+{$rp.id:valueBoolean}",ResearchStudy,progressStatus.actual,progressStatus,extension studyProgressStatus,isActual
+progress status period,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.
+{$rp.id: {""start"" : $rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-startDate""].valueString,
+            ""end"" : $rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-endDate""].valueString}}",ResearchStudy,progressStatus.period,progressStatus,extension studyProgressStatus,"startDate, endDate"
+location reference,"study.versions.organizations.managedSites.{id: {""reference"": id, ""type"":""Location""}} ",ResearchStudy,site,site,StudySite,id
 location id,study.versions.organizations.managedSites.{id: id},Location,id,,,
 site name,study.versions.organizations.managedSites.{id: label},Location,name,,StudySite,label
 site type,"study.versions.organizations.managedSites.{id: ""location""}",Location,type,,,
@@ -54,7 +61,7 @@ no healthy subjects decode,"study.versions.studyDesigns.population[includesHealt
 healthy subjects code,"study.versions.studyDesigns.population[includesHealthySubjects=true].{id: ""includes-healthy-volunteers""}",ResearchStudy,classifier.coding.code,classifier,StudyDesignPopulation,includesHealthySubjects
 healthy subjects decode,"study.versions.studyDesigns.population[includesHealthySubjects=true].{id: ""Includes healthy volunteers""}",ResearchStudy,classifier.coding.display,classifier,StudyDesignPopulation,includesHealthySubjects
 (no) healthy subjects codeSystem,"study.versions.studyDesigns.population.{id: ""https://fevir.net/resources/CodeSystem/419455""}",ResearchStudy,classifier.coding.system,classifier,,
-Reference to group of criteria,"{""eligibility-criteria"": ""eligibility-criteria""}",ResearchStudy,recruitment.eligibility,recruitment,,
+Reference to group of criteria,"{""eligibility-criteria"": {""reference"": ""eligibility-criteria"", ""type"":""Group""}}",ResearchStudy,recruitment.eligibility,recruitment,,
 Eligibility overall list id,"{""eligibility-criteria"": ""eligibility-criteria""}",Group-all,id,,,
 combination method general,"{""eligibility-criteria"": ""all-of""}",Group-all,combinationMethod,,,
 Eligibility criteria text,"study.versions@$sv.(
