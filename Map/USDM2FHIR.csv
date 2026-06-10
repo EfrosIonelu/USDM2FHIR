@@ -2,7 +2,7 @@ Item,USDM JSONata path,FHIR resourceType,FHIR path,FHIR Index level,USDM class,U
 Condition label,study.versions.studyDesigns.indications.{id: label},ResearchStudy,condition.text,condition,Indication,label
 Condition code,"study.versions.studyDesigns.indications.{id: {""code"": codes.code, ""display"": codes.decode, ""system"": codes.codeSystem, ""version"": codes.codeSystemVersion}}",ResearchStudy,condition.coding,condition,Indication,codes
 Study Identifier,study.versions.studyIdentifiers.{id: text},ResearchStudy,identifier.value,identifier,StudyIdentifier,text
-Study Identifier Organization,(study.versions)@$sv.$sv.studyIdentifiers@$id.{id: $sv.organizations[id=$id.scopeId].label},ResearchStudy,identifier.assigner.display,identifier,StudyIdentifier,scope
+Study Identifier Organization,(study.versions)@$sv.$sv.studyIdentifiers@$id.$id{id: $sv.organizations[id=$id.scopeId].label},ResearchStudy,identifier.assigner.display,identifier,StudyIdentifier,scope
 NCT identifier system,"study.versions.studyIdentifiers[$substring(text,0,3)=""NCT""].{id: ""https://clinicaltrials.gov""}",ResearchStudy,identifier.system,identifier,,
 Identifier use,"study.versions.studyIdentifiers.{id: ""official""}",ResearchStudy,identifier.use,identifier,,
 Study titles,study.versions.titles.{id: text},ResearchStudy,label.value,label,StudyTitle,text

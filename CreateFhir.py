@@ -268,7 +268,7 @@ def create_fhir_output(fhir_resources, output_file="file.json"):
         existing_contained.extend(deepcopy(contained_candidates))
         main_rs["contained"] = existing_contained
     # Build bundle entries from (possibly modified) list
-    entries = [{"resource": res} for res in fhir_resources]
+    entries = [{"resource": res} for res in research_studies]
     fhir_bundle = {
         "resourceType": "Bundle",
         "type": "collection",
