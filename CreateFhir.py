@@ -226,7 +226,7 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
         prev_cell_id = cell_id
         if value is not None and value != "[]" and value != "{}" and value != " " and value != "":
             pairs.append((fhir_path_idx, value))
-            
+
     x = paths_to_json(pairs)
     fhir_resource.update(x)
     return fhir_resource
@@ -393,7 +393,6 @@ def paths_to_json(path_value_pairs: list[tuple[str, any]]) -> dict:
     Transform multiple path-value pairs into a single merged JSON structure.
     Supports array notation like "coding[0].display".
     """
-    
     def set_nested(obj, keys, value):
 
         for i, key in enumerate(keys[:-1]):
@@ -448,26 +447,21 @@ def explode_result_map(result_map):
     """
     Take a list of 5-tuples:
         (cell_id, target_path, target_group, value, resource)
-    and expand entries where 'value' is a list (or other iterable except str)
+    and expand entries where 'value' is a list
     into one tuple per item in the list.
-    Example:
-      ('Ext_1', 'characteristic.description', 'characteristic',
-       ['A', 'B', 'C'], 'Group')
-    becomes:
-      ('Ext_1', 'characteristic.description', 'characteristic', 'A', 'Group')
-      ('Ext_1', 'characteristic.description', 'characteristic', 'B', 'Group')
-      ('Ext_1', 'characteristic.description', 'characteristic', 'C', 'Group')
+    Dicts / scalars are kept as-is.
     """
     exploded = []
     for cell_id, target_path, target_group, value, resource in result_map:
-        # treat None / nan specially if you want; here we just pass them through
-        if isinstance(value, str) or not isinstance(value, Iterable):
-            # scalar or non-iterable: keep as-is
-            exploded.append((cell_id, target_path, target_group, value, resource))
-        else:
-            # iterable (e.g. list, tuple, etc.): create one entry per item
+        # case 1: value is a list -> explode
+        if isinstance(value, list):
             for v in value:
                 exploded.append((cell_id, target_path, target_group, v, resource))
+        # OPTIONAL: if you also want to explode tuples, use:
+        # elif isinstance(value, (list, tuple)):
+        else:
+            # scalar, dict, None, etc. -> keep as-is
+            exploded.append((cell_id, target_path, target_group, value, resource))
     return exploded
 
 #map_file = "Map/USDM2FHIR.csv"

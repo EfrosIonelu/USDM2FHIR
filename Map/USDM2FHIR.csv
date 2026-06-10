@@ -1,23 +1,24 @@
 Item,USDM JSONata path,FHIR resourceType,FHIR path,FHIR Index level,USDM class,USDM attribute
 Condition label,study.versions.studyDesigns.indications.{id: label},ResearchStudy,condition.text,condition,Indication,label
-Condition code,study.versions.studyDesigns.indications.{id: codes.code},ResearchStudy,condition.coding.code,condition,Indication,codes
-codition decode,study.versions.studyDesigns.indications.{id: codes.decode},ResearchStudy,condition.coding.display,condition,Indication,codes
-Condition code system,study.versions.studyDesigns.indications.{id: codes.codeSystem},ResearchStudy,condition.coding.system,condition,Indication,codes
-Condition code system version,study.versions.studyDesigns.indications.{id: codes.codeSystemVersion},ResearchStudy,condition.coding.version,condition,Indication,codes
-Study Identifier,"(study.versions)@$sv.$sv.studyIdentifiers[scopeId in $sv.roles[code.code=""C70793""].organizationIds[0]].{id: text}",ResearchStudy,identifier.value,identifier,StudyIdentifier,text
-Study Identifier Organization,"(study.versions)@$sv.$sv.studyIdentifiers[scopeId in $sv.roles[code.code=""C70793""].organizationIds[0]].{id: $sv.organizations[id=$sv.studyIdentifiers[scopeId in $sv.roles[code.code=""C70793""].organizationIds[0]].scopeId].label}",ResearchStudy,identifier.assigner.display,identifier,StudyIdentifier,scope
-NCT Identifier,"study.versions.studyIdentifiers[$substring(text,0,3)=""NCT""].{id: text}",ResearchStudy,identifier.value,identifier,StudyIdentifier,text
+Condition code,"study.versions.studyDesigns.indications.{id: {""code"": codes.code, ""display"": codes.decode, ""system"": codes.codeSystem, ""version"": codes.codeSystemVersion}}",ResearchStudy,condition.coding,condition,Indication,codes
+Study Identifier,study.versions.studyIdentifiers.{id: text},ResearchStudy,identifier.value,identifier,StudyIdentifier,text
+Study Identifier Organization,(study.versions)@$sv.$sv.studyIdentifiers@$id.{id: $sv.organizations[id=$id.scopeId].label},ResearchStudy,identifier.assigner.display,identifier,StudyIdentifier,scope
 NCT identifier system,"study.versions.studyIdentifiers[$substring(text,0,3)=""NCT""].{id: ""https://clinicaltrials.gov""}",ResearchStudy,identifier.system,identifier,,
-NCT identifier use,"study.versions.studyIdentifiers[$substring(text,0,3)=""NCT""].{id: ""official""}",ResearchStudy,identifier.use,identifier,,
+Identifier use,"study.versions.studyIdentifiers.{id: ""official""}",ResearchStudy,identifier.use,identifier,,
 Study titles,study.versions.titles.{id: text},ResearchStudy,label.value,label,StudyTitle,text
 Official title,"study.versions.titles[type.code=""C207616""].{id: text}",ResearchStudy,title,title,StudyTitle,text
-Official study title code,"study.versions.titles[type.code=""C207616""].{id: ""official""}",ResearchStudy,label.type.coding.code,label,StudyTitle,type
-Official study title decode,"study.versions.titles[type.code=""C207616""].{id: ""Official title""}",ResearchStudy,label.type.coding.display,label,StudyTitle,type
-Study titles FHIR codesystem,"study.versions.titles.{id: ""http://hl7.org/fhir/title-type""}",ResearchStudy,label.type.coding.system,label,StudyTitle,type
-Brief title code,"study.versions.titles[type.code=""C207615""].{id: ""short-title""}",ResearchStudy,label.type.coding.code,label,StudyTitle,type
-Brief title decode,"study.versions.titles[type.code=""C207615""].{id: ""Short title""}",ResearchStudy,label.type.coding.display,label,StudyTitle,type
-Acronym code,"study.versions.titles[type.code=""C94108""].{id: ""acronym""}",ResearchStudy,label.type.coding.code,label,StudyTitle,type
-Acronym decode,"study.versions.titles[type.code=""C94108""].{id: ""Acronym""}",ResearchStudy,label.type.coding.display,label,StudyTitle,type
+Title type,"study.versions.titles.(
+    $titleCode := function($c) {$c=""C207616"" ? ""official"" : $c=""C207615"" ? ""short-title"" :$c=""C94108"" ? ""acronym"" : $c=""C207618"" ? ""scientific""};
+    $titleDisplay := function($c) {$c=""C207616"" ? ""Official title"" : $c=""C207615"" ? ""Short title"" :$c=""C94108"" ? ""Acronym""  : $c=""C207618"" ? ""Scientific title""};
+    {id: {""code"": $titleCode(type.code), ""display"": $titleDisplay(type.code), ""system"":""http://hl7.org/fhir/title-type""}})",ResearchStudy,label.type.coding,label,StudyTitle,type
+Translated titles,"study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url=""http://cdisc.org/usdm/extensions/extensionR-1/class-1""])@$tr.
+{$tr.id: $tr.extensionAttributes[url=""text""].valueString}",ResearchStudy,label.value,label,StudyTitle,extension
+Translated title type,"study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url=""http://cdisc.org/usdm/extensions/extensionR-1/class-1""])@$tr.
+(   $titleCode := function($c) {$c=""C207616"" ? ""official"" : $c=""C207615"" ? ""short-title"" :$c=""C94108"" ? ""acronym"" : $c=""C207618"" ? ""scientific""};
+    $titleDisplay := function($c) {$c=""C207616"" ? ""Official title"" : $c=""C207615"" ? ""Short title"" :$c=""C94108"" ? ""Acronym""  : $c=""C207618"" ? ""Scientific title""};
+    {$tr.id: {""code"": $titleCode($tt.type.code), ""display"": $titleDisplay($tt.type.code), ""system"":""http://hl7.org/fhir/title-type""}})",ResearchStudy,label.type.coding,label,StudyTitle,type
+Translated title language,"study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url=""http://cdisc.org/usdm/extensions/extensionR-1/class-1""])@$tr.
+{$tr.id: $tr.extensionAttributes[url=""language""].valueCode.code}",ResearchStudy,label.language,label,StudyTitle,extension
 Minimum Age text,"{""id01"": ""Minimum Age: "" & $min([study.versions.studyDesigns.population.plannedAge.minValue.value,study.versions.studyDesigns.population.cohorts.plannedAge.minValue.value]) &  
 "" "" & $distinct(study.versions.studyDesigns.population.plannedAge.minValue.unit.standardCode.decode) &""s""
 &  $substring($distinct(study.versions.studyDesigns.population.cohorts.plannedAge.minValue.unit.standardCode.decode),0,1)}",ResearchStudy,classifier.text,classifier,PopulationDefinition,plannedAge
@@ -33,16 +34,16 @@ Objective secondary level,"study.versions.studyDesigns.objectives[level.code=""C
 Objective exploratory level,"study.versions.studyDesigns.objectives[level.code=""C163559""].{id: ""exploratory""}",ResearchStudy,objective.type.coding.code,objective,Objective,level
 Objective exploratory level,"study.versions.studyDesigns.objectives[level.code=""C163559""].{id: ""Exploratory""}",ResearchStudy,objective.type.coding.display,objective,Objective,level
 Endpoints,study.versions.studyDesigns.objectives@$ob.$ob.endpoints.{$ob.id: text},ResearchStudy,objective.outcomeMeasure.name,objective;outcomeMeasure,Endpoint,text
-Endpoint level code,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C94496""].{$ob.id: ""primary""}",ResearchStudy,objective.outcomeMeasure.type.coding.code,objective;outcomeMeasure,Endpoint,level
-Endpoint level decode,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C94496""].{$ob.id: ""Primary""}",ResearchStudy,objective.outcomeMeasure.type.coding.display,objective;outcomeMeasure,Endpoint,level
-Endpoint level code system,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints.{$ob.id: ""http://terminology.hl7.org/CodeSystem/research-study-objective-type""}",ResearchStudy,objective.outcomeMeasure.type.coding.system,objective;outcomeMeasure,,
-Endpoint level code,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C139173""].{$ob.id: ""secondary""}",ResearchStudy,objective.outcomeMeasure.type.coding.code,objective;outcomeMeasure,Endpoint,level
-Endpoint level decode,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C139173""].{$ob.id: ""Secondary""}",ResearchStudy,objective.outcomeMeasure.type.coding.display,objective;outcomeMeasure,Endpoint,level
-Endpoint level code,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C170559""].{$ob.id: ""exploratory""}",ResearchStudy,objective.outcomeMeasure.type.coding.code,objective;outcomeMeasure,Endpoint,level
-Endpoint level decode,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints[level.code=""C170559""].{$ob.id: ""Exploratory""}",ResearchStudy,objective.outcomeMeasure.type.coding.display,objective;outcomeMeasure,Endpoint,level
-Phase code,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].{id: code}",ResearchStudy,phase.coding.code,phase,StudyDesign,studyPhase
-Phase decode,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].{id: decode}",ResearchStudy,phase.coding.display,phase,StudyDesign,studyPhase
-Phase codeSystem,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].{id: codeSystem}",ResearchStudy,phase.coding.system,phase,StudyDesign,studyPhase
+Endpoint level,"study.versions.studyDesigns.objectives@$ob.$ob.endpoints.(
+    $firstWord := function($s) {$split($s, "" "")[0]};
+    $titleCase := function($s) {$join($split($lowercase($s), "" "")@$w.($uppercase($substring($w, 0, 1)) & $substring($w, 1)),"" "")};
+{$ob.id: {""code:"":$lowercase($firstWord(level.decode)), ""display"": $titleCase($firstWord(level.decode)), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-objective-type""}})",ResearchStudy,objective.outcomeMeasure.type.coding,objective;outcomeMeasure,Endpoint,level
+purpose _ intent,"study.versions.studyDesigns.intentTypes.(
+    $FCod := function($c){$replace($lowercase($c), "" "", ""-"")};
+    $titleCase := function($s) {$join($split($lowercase($s), "" "")@$w.($uppercase($substring($w, 0, 1)) & $substring($w, 1)),"" "")};
+{id: {""code"": $FCod(decode), ""display"": $titleCase(decode), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type""}})",ResearchStudy,purposeType.coding,purposeType,,
+Study Phase,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].
+{id: {""code"": code, ""display"": decode, ""system"": codeSystem}}",ResearchStudy,phase.coding,phase,StudyDesign,studyPhase
 location reference,study.versions.organizations.managedSites.{id: id},ResearchStudy,site.reference,site,StudySite,id
 location id,study.versions.organizations.managedSites.{id: id},Location,id,,,
 site name,study.versions.organizations.managedSites.{id: label},Location,name,,StudySite,label
@@ -53,15 +54,6 @@ no healthy subjects decode,"study.versions.studyDesigns.population[includesHealt
 healthy subjects code,"study.versions.studyDesigns.population[includesHealthySubjects=true].{id: ""includes-healthy-volunteers""}",ResearchStudy,classifier.coding.code,classifier,StudyDesignPopulation,includesHealthySubjects
 healthy subjects decode,"study.versions.studyDesigns.population[includesHealthySubjects=true].{id: ""Includes healthy volunteers""}",ResearchStudy,classifier.coding.display,classifier,StudyDesignPopulation,includesHealthySubjects
 (no) healthy subjects codeSystem,"study.versions.studyDesigns.population.{id: ""https://fevir.net/resources/CodeSystem/419455""}",ResearchStudy,classifier.coding.system,classifier,,
-treatment study code,"study.versions.studyDesigns.intentTypes[code=""C49656""].{id: ""treatment""}",ResearchStudy,purposeType.coding.code,purposeType,StudyDesign,intentTypes
-treatment study decode,"study.versions.studyDesigns.intentTypes[code=""C49656""].{id: ""Treatment""}",ResearchStudy,purposeType.coding.display,purposeType,StudyDesign,intentTypes
-study type codesystem,"study.versions.studyDesigns.intentTypes.{id: ""https://terminology.hl7.org/7.1.0/en/CodeSystem-research-study-prim-purp-type.html""}",ResearchStudy,purposeType.coding.system,purposeType,,
-prevention study code,"study.versions.studyDesigns.intentTypes[code=""C49657""].{id: ""prevention""}",ResearchStudy,purposeType.coding.code,purposeType,StudyDesign,intentTypes
-prevention study decode,"study.versions.studyDesigns.intentTypes[code=""C49657""].{id: ""Prevention""}",ResearchStudy,purposeType.coding.display,purposeType,StudyDesign,intentTypes
-diagnostic study code,"study.versions.studyDesigns.intentTypes[code=""C49653""].{id: ""diagnostic""}",ResearchStudy,purposeType.coding.code,purposeType,StudyDesign,intentTypes
-diagnostic study decode,"study.versions.studyDesigns.intentTypes[code=""C49653""].{id: ""Diagnostic""}",ResearchStudy,purposeType.coding.display,purposeType,StudyDesign,intentTypes
-device feasibility study code,"study.versions.studyDesigns.intentTypes[code=""C139174""].{id: ""device-feasibility""}",ResearchStudy,purposeType.coding.code,purposeType,StudyDesign,intentTypes
-device feasibility study decode,"study.versions.studyDesigns.intentTypes[code=""C139174""].{id: ""Device Feasibility""}",ResearchStudy,purposeType.coding.display,purposeType,StudyDesign,intentTypes
 Reference to group of criteria,"{""eligibility-criteria"": ""eligibility-criteria""}",ResearchStudy,recruitment.eligibility,recruitment,,
 Eligibility overall list id,"{""eligibility-criteria"": ""eligibility-criteria""}",Group-all,id,,,
 combination method general,"{""eligibility-criteria"": ""all-of""}",Group-all,combinationMethod,,,
