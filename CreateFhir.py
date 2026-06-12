@@ -6,6 +6,7 @@ import pandas as pd
 import re
 from collections.abc import Iterable
 from copy import deepcopy
+import ResolveTags
 
 _QUOTED_STR_RE = re.compile(r"""
     (?:
@@ -60,13 +61,16 @@ def get_USDM_info(MapFile,USDMFile):
                 
                 for cell in x:
                     # extract the first key from the dict (value between brackets)
+                    
                     try:
                         cell_id = next(iter(cell.keys()))
                     except StopIteration:
                         cell_id = None
                     if cell_id is not None:
                         if cell_id not in RowIds:
-                            RowIds  .append(cell_id)
+                            RowIds.append(cell_id)
+                        if (USDM_Path.find('criterionItem') != -1 or USDM_Path.find('objectives') != -1) and USDM_Path.find('text') != -1:
+                            cell[cell_id] = ResolveTags.ResolveTag(cell[cell_id], data)
                         try:
                             ResultMap.append((cell_id, FHIR_path, FHIR_group, cell[cell_id],FHIR_resourcename))
                         except Exception as e:

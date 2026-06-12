@@ -114,10 +114,10 @@
         ],
         "objective": [
           {
-            "name": "<p>Primary objective texts not available from ClinicalTrials.gov.</p>",
+            "name": "Primary objective texts not available from ClinicalTrials.gov.",
             "outcomeMeasure": [
               {
-                "name": "<p>Safety as measured by the rate of adverse events, and serious adverse events [Time Frame: Approximately 510 days]</p>",
+                "name": "Safety as measured by the rate of adverse events, and serious adverse events [Time Frame: Approximately 510 days]",
                 "type": {
                   "coding": {
                     "code": "primary",
@@ -136,10 +136,10 @@
             }
           },
           {
-            "name": "<p>Secondary objective texts not available from ClinicalTrials.gov.</p>",
+            "name": "Secondary objective texts not available from ClinicalTrials.gov.",
             "outcomeMeasure": [
               {
-                "name": "<p>Efficacy as measured by tumor assessment [Time Frame: Assessed from the start of treatment (ay 1) to the end of treatment (week 60) and for 90 days in follow-up]</p>",
+                "name": "Efficacy as measured by tumor assessment [Time Frame: Assessed from the start of treatment (ay 1) to the end of treatment (week 60) and for 90 days in follow-up]",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -149,7 +149,7 @@
                 }
               },
               {
-                "name": "<p>The maximum observed serum concentration (Cmax) of BMS-986015 and Ipilimumab</p>",
+                "name": "The maximum observed serum concentration (Cmax) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -159,7 +159,7 @@
                 }
               },
               {
-                "name": "<p>The time of maximum observed serum concentration (Tmax) of BMS-986015 and Ipilimumab</p>",
+                "name": "The time of maximum observed serum concentration (Tmax) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -169,7 +169,7 @@
                 }
               },
               {
-                "name": "<p>Area under the serum concentration-time curve in one dosing interval [AUC(TAU)] of BMS-986015 and Ipilimumab</p>",
+                "name": "Area under the serum concentration-time curve in one dosing interval [AUC(TAU)] of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -179,7 +179,7 @@
                 }
               },
               {
-                "name": "<p>Area under the serum concentration-time curve from time zero extrapolated to infinite time [AUC(INF)] of BMS-986015 and Ipilimumab</p>",
+                "name": "Area under the serum concentration-time curve from time zero extrapolated to infinite time [AUC(INF)] of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -189,7 +189,7 @@
                 }
               },
               {
-                "name": "<p>Apparent total body clearance (CL) of BMS-986015 and Ipilimumab</p>",
+                "name": "Apparent total body clearance (CL) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -199,7 +199,7 @@
                 }
               },
               {
-                "name": "<p>Apparent total body clearance (CL) of BMS-986015 and Ipilimumab</p>",
+                "name": "Apparent total body clearance (CL) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -209,7 +209,7 @@
                 }
               },
               {
-                "name": "<p>Apparent volume of distribution at steady state (Vss) of BMS-986015 and Ipilimumab</p>",
+                "name": "Apparent volume of distribution at steady state (Vss) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -219,7 +219,7 @@
                 }
               },
               {
-                "name": "<p>Serum half-life (T-HALF) of BMS-986015 and Ipilimumab</p>",
+                "name": "Serum half-life (T-HALF) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -229,7 +229,7 @@
                 }
               },
               {
-                "name": "<p>Trough observed serum concentration (Cmin) of BMS-986015 and Ipilimumab</p>",
+                "name": "Trough observed serum concentration (Cmin) of BMS-986015 and Ipilimumab",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -239,7 +239,7 @@
                 }
               },
               {
-                "name": "<p>Immunogenicity as measured by the incidence of Ipilimumab and anti-Killer cell immunoglobulin-like receptor (KIR) (BMS-986015) anti-drug antibodies (ADA)</p>",
+                "name": "Immunogenicity as measured by the incidence of Ipilimumab and anti-Killer cell immunoglobulin-like receptor (KIR) (BMS-986015) anti-drug antibodies (ADA)",
                 "type": {
                   "coding": {
                     "code": "secondary",
@@ -353,7 +353,7 @@
             "characteristic": [
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p>Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:<usdm:tag name=\"indic_1\"/>, <usdm:tag name=\"indic_2\"/>, <usdm:tag name=\"indic_3\"/></p>",
+                "valueCodeableConcept": "Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:Non-Small Cell Lung Cancer (NSCLC), Castrate Resistant Prostate Cancer (CRPC), Melanoma (MEL)",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpRespNode_1",
                   "type": "Group"
@@ -361,27 +361,27 @@
               },
               {
                 "exclude": true,
-                "valueCodeableConcept": "<p>Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease</p>"
+                "valueCodeableConcept": "Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease"
               },
               {
                 "exclude": true,
-                "valueCodeableConcept": "<p>Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody</p>"
+                "valueCodeableConcept": "Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody"
               },
               {
                 "exclude": true,
-                "valueCodeableConcept": "<p>Grade 2 <usdm:tag name=\"contraIndic_2\"/></p>"
+                "valueCodeableConcept": "Grade 2 neuropathy"
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p>At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per <usdm:tag name=\"bc_recist_1\"/></p>"
+                "valueCodeableConcept": "At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria"
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p>Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk</p>"
+                "valueCodeableConcept": "Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk"
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p><usdm:tag name=\"bc_ecog_1\"/> of 0 or 1</p>",
+                "valueCodeableConcept": "Eastern Cooperative Oncology Group (ECOG) status of 0 or 1",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpResp_1",
                   "type": "Group"
@@ -389,23 +389,23 @@
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p>Estimated life expectancy of >= 12 weeks</p>"
+                "valueCodeableConcept": "Estimated life expectancy of >= 12 weeks"
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p><usdm:tag name=\"bc_wbc_1\"/> &gt;=2000/&#181;L, <usdm:tag name=\"bc_neut_1\"/> &gt;=1500/&#181;L, <usdm:tag name=\"bc_plat_1\"/> &gt;= 100x1000/&#181;L, <usdm:tag name=\"bc_hgb_1\"/> &gt;= 8.5 g/dL, <usdm:tag name=\"bc_crcl_1\"/> &lt;= 1.5 X upper limit of normal (ULN) mL/min, <usdm:tag name=\"bc_alt_1\"/> and <usdm:tag name=\"bc_ast_1\"/> &lt;= 3x ULN</p>"
+                "valueCodeableConcept": "White blood cell (WBC) >=2000/microL, Neutrophils >=1500/microL, Platelets >= 100x1000/microL, Hemoglobin >= 8.5 g/dL, Creatinine Clearance <= 1.5 X upper limit of normal (ULN) mL/min, Alanine aminotransferase (ALT) and Aspartate aminotransferase (AST) <= 3x ULN"
               },
               {
                 "exclude": false,
-                "valueCodeableConcept": "<p>Normal <usdm:tag name=\"bcCat_thyr_1\"/> or be on stable hormone supplementation</p>"
+                "valueCodeableConcept": "Normal Thyroid function or be on stable hormone supplementation"
               },
               {
                 "exclude": true,
-                "valueCodeableConcept": "<p>Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint</p>"
+                "valueCodeableConcept": "Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint"
               },
               {
                 "exclude": true,
-                "valueCodeableConcept": "<p>Subjects with known or suspected <usdm:tag name=\"contraIndic_1\"/></p>",
+                "valueCodeableConcept": "Subjects with known or suspected brain metastasis",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpResp_5",
                   "type": "Group"
