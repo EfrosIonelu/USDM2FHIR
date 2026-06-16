@@ -352,60 +352,60 @@
             },
             "characteristic": [
               {
+                "description": "Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:Non-Small Cell Lung Cancer (NSCLC), Castrate Resistant Prostate Cancer (CRPC), Melanoma (MEL)",
                 "exclude": false,
-                "valueCodeableConcept": "Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:Non-Small Cell Lung Cancer (NSCLC), Castrate Resistant Prostate Cancer (CRPC), Melanoma (MEL)",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpRespNode_1",
                   "type": "Group"
                 }
               },
               {
-                "exclude": true,
-                "valueCodeableConcept": "Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease"
+                "description": "Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease",
+                "exclude": true
               },
               {
-                "exclude": true,
-                "valueCodeableConcept": "Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody"
+                "description": "Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody",
+                "exclude": true
               },
               {
-                "exclude": true,
-                "valueCodeableConcept": "Grade 2 neuropathy"
+                "description": "Grade 2 neuropathy",
+                "exclude": true
               },
               {
+                "description": "At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria",
+                "exclude": false
+              },
+              {
+                "description": "Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk",
+                "exclude": false
+              },
+              {
+                "description": "Eastern Cooperative Oncology Group (ECOG) status of 0 or 1",
                 "exclude": false,
-                "valueCodeableConcept": "At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria"
-              },
-              {
-                "exclude": false,
-                "valueCodeableConcept": "Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk"
-              },
-              {
-                "exclude": false,
-                "valueCodeableConcept": "Eastern Cooperative Oncology Group (ECOG) status of 0 or 1",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpResp_1",
                   "type": "Group"
                 }
               },
               {
-                "exclude": false,
-                "valueCodeableConcept": "Estimated life expectancy of >= 12 weeks"
+                "description": "Estimated life expectancy of >= 12 weeks",
+                "exclude": false
               },
               {
-                "exclude": false,
-                "valueCodeableConcept": "White blood cell (WBC) >=2000/microL, Neutrophils >=1500/microL, Platelets >= 100x1000/microL, Hemoglobin >= 8.5 g/dL, Creatinine Clearance <= 1.5 X upper limit of normal (ULN) mL/min, Alanine aminotransferase (ALT) and Aspartate aminotransferase (AST) <= 3x ULN"
+                "description": "White blood cell (WBC) >=2000/microL, Neutrophils >=1500/microL, Platelets >= 100x1000/microL, Hemoglobin >= 8.5 g/dL, Creatinine Clearance <= 1.5 X upper limit of normal (ULN) mL/min, Alanine aminotransferase (ALT) and Aspartate aminotransferase (AST) <= 3x ULN",
+                "exclude": false
               },
               {
-                "exclude": false,
-                "valueCodeableConcept": "Normal Thyroid function or be on stable hormone supplementation"
+                "description": "Normal Thyroid function or be on stable hormone supplementation",
+                "exclude": false
               },
               {
+                "description": "Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint",
+                "exclude": true
+              },
+              {
+                "description": "Subjects with known or suspected brain metastasis",
                 "exclude": true,
-                "valueCodeableConcept": "Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint"
-              },
-              {
-                "exclude": true,
-                "valueCodeableConcept": "Subjects with known or suspected brain metastasis",
                 "valueReference": {
                   "reference": "ExtensionClass_ExpResp_5",
                   "type": "Group"

@@ -66,7 +66,7 @@ Eligibility overall list id,"{""eligibility-criteria"": ""eligibility-criteria""
 combination method general,"{""eligibility-criteria"": ""all-of""}",Group-all,combinationMethod,,,
 Eligibility criteria text,"study.versions@$sv.(
   $sv.studyDesigns.eligibilityCriteria@$ex.
-  {$ex.id: $sv.eligibilityCriterionItems[id=$ex.criterionItemId].text})",Group-all,characteristic.valueCodeableConcept,characteristic,,
+  {$ex.id: $sv.eligibilityCriterionItems[id=$ex.criterionItemId].text})",Group-all,characteristic.description,characteristic,,
 Exclusion criterion true/false?,"study.versions.studyDesigns.eligibilityCriteria.{id: category.code=""C25370""}",Group-all,characteristic.exclude,characteristic,,
 Group references,"study.versions@$sv.(
   $sv.studyDesigns.eligibilityCriteria@$ex.(
