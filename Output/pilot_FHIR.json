@@ -1,0 +1,613 @@
+{
+  "resourceType": "ResearchStudy",
+  "id": "123",
+  "meta": {
+    "versionId": "1",
+    "lastUpdated": "2026-06-22T00:00:00Z"
+  },
+  "classifier": [
+    {
+      "coding": {
+        "code": "includes-ages-18-64",
+        "display": "Includes ages 18-64 years",
+        "system": "https://fevir.net/resources/CodeSystem/419455"
+      }
+    },
+    {
+      "coding": {
+        "code": "includes-ages-65-and-older",
+        "display": "Includes ages 65 and older",
+        "system": "https://fevir.net/resources/CodeSystem/419455"
+      }
+    },
+    {
+      "coding": {
+        "code": "does-not-include-healthy-volunteers",
+        "display": "Does not include healthy volunteers",
+        "system": "https://fevir.net/resources/CodeSystem/419455"
+      }
+    },
+    {
+      "coding": {
+        "code": "includes-females",
+        "display": "Includes female subjects",
+        "system": "https://fevir.net/resources/CodeSystem/419455"
+      }
+    },
+    {
+      "coding": {
+        "code": "includes-males",
+        "display": "Includes male subjects",
+        "system": "https://fevir.net/resources/CodeSystem/419455"
+      }
+    },
+    {
+      "text": "Minimum Age: 50 Years"
+    },
+    {
+      "text": "Maximum Age: 100 Years"
+    }
+  ],
+  "comparisonGroup": [
+    {
+      "description": "Placebo",
+      "name": "Placebo"
+    },
+    {},
+    {
+      "description": "Active Substance",
+      "name": "Xanomeline Low Dose"
+    },
+    {},
+    {
+      "description": "Active Substance",
+      "name": "Xanomeline High Dose"
+    }
+  ],
+  "condition": [
+    {
+      "coding": {
+        "code": "G30.9",
+        "display": "Alzheimer's disease; unspecified",
+        "system": "ICD-10-CM"
+      },
+      "text": "Alzheimer's disease"
+    },
+    {
+      "coding": {
+        "code": "26929004",
+        "display": "Alzheimer's disease",
+        "system": "SNOMED"
+      },
+      "text": "Alzheimer's disease"
+    }
+  ],
+  "identifier": [
+    {
+      "assigner": {
+        "display": "Eli Lilly"
+      },
+      "codeableConcept": {
+        "text": "study identifier"
+      },
+      "use": "official",
+      "value": "H2Q-MC-LZZT"
+    },
+    {
+      "codeableConcept": {
+        "text": "study identifier"
+      },
+      "system": "http://terminology.hl7.org/NamingSystem/ClinicalTrials-Gov",
+      "use": "official",
+      "value": "NCT12345678"
+    }
+  ],
+  "label": [
+    {
+      "type": {
+        "coding": {
+          "code": "short-title",
+          "display": "Short title",
+          "system": "http://hl7.org/fhir/title-type"
+        }
+      },
+      "value": "Xanomeline (LY246708)"
+    },
+    {
+      "type": {
+        "coding": {
+          "code": "official",
+          "display": "Official title",
+          "system": "http://hl7.org/fhir/title-type"
+        }
+      },
+      "value": "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease"
+    },
+    {
+      "type": {
+        "coding": {
+          "system": "http://hl7.org/fhir/title-type"
+        }
+      },
+      "value": "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease"
+    }
+  ],
+  "objective": [
+    {
+      "name": "To determine if there is a statistically significant relationship (overall Type 1 erroralpha=0.05) between the change in both the ADAS-Cog (11) and CIBIC+ scores, and drug dose (0, 50 cm2 [54 mg], and 75 cm2 [81 mg]).",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Week 24"
+          },
+          "type": {
+            "coding": {
+              "code": "primary",
+              "display": "Primary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        },
+        {
+          "endpoint": {
+            "display": "Video-referenced Clinician\u2019s Interview-based Impression of Change (CIBIC+) at Week 24"
+          },
+          "type": {
+            "coding": {
+              "code": "primary",
+              "display": "Primary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "primary",
+          "display": "Primary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    },
+    {
+      "name": "To document the safety profile of the xanomeline TTS.",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "Adverse events"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        },
+        {
+          "endpoint": {
+            "display": "Vital signs (weight, standing and supine blood pressure, heart rate)"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        },
+        {
+          "endpoint": {
+            "display": "Laboratory evaluations (Change from Baseline)"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "secondary",
+          "display": "Secondary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    },
+    {
+      "name": "To assess the dose-dependent improvement in behavior. Improved scores on the Revised Neuropsychiatric Inventory (NPI-X) will indicate improvement in these areas.",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "Alzheimer's Disease Assessment Scale - Cognitive Subscale, total of 11 items [ADAS-Cog (11)] at Weeks 8 and 16"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        },
+        {
+          "endpoint": {
+            "display": "Video-referenced Clinician\u2019s Interview-based Impression of Change (CIBIC+) at Weeks 8 and 16"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        },
+        {
+          "endpoint": {
+            "display": "Mean Revised Neuropsychiatric Inventory (NPI-X) from Week 4 to Week 24"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "secondary",
+          "display": "Secondary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    },
+    {
+      "name": "To assess the dose-dependent improvements in activities of daily living. Improved scores on the Disability Assessment for Dementia (DAD) will indicate improvement in these areas (see Attachment LZZT.5).",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "*** To be determined from protocol ***"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "secondary",
+          "display": "Secondary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    },
+    {
+      "name": "To assess the dose-dependent improvements in an extended assessment of cognition that integrates attention/concentration tasks. The Alzheimer's Disease Assessment Scale-14 item Cognitive Subscale, hereafter referred to as ADAS-Cog (14), will be used for this assessment (see Attachment LZZT.2).",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "*** To be determined from protocol ***"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "secondary",
+          "display": "Secondary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    },
+    {
+      "name": "To assess the treatment response as a function of Apo E genotype.",
+      "outcomeMeasure": [
+        {
+          "endpoint": {
+            "display": "*** To be determined from protocol ***"
+          },
+          "type": {
+            "coding": {
+              "code": "secondary",
+              "display": "Secondary",
+              "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+            }
+          }
+        }
+      ],
+      "type": {
+        "coding": {
+          "code": "secondary",
+          "display": "Secondary",
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"
+        }
+      }
+    }
+  ],
+  "purposeType": [
+    {
+      "coding": {
+        "code": "treatment",
+        "display": "Treatment Study",
+        "system": "http://terminology.hl7.org/CodeSystem/research-study-purpose-type"
+      }
+    },
+    {
+      "coding": {
+        "system": "http://terminology.hl7.org/CodeSystem/research-study-purpose-type"
+      }
+    }
+  ],
+  "recruitment": [
+    {
+      "eligibility": {
+        "reference": "#eligibility-criteria",
+        "type": "Group"
+      }
+    }
+  ],
+  "site": [
+    {
+      "reference": "#StudySite_1",
+      "type": "Location"
+    }
+  ],
+  "title": "Safety and Efficacy of the Xanomeline Transdermal Therapeutic System (TTS) in Patients with Mild to Moderate Alzheimer's Disease",
+  "contained": [
+    {
+      "resourceType": "Group",
+      "id": "eligibility-criteria",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-06-22T00:00:00Z"
+      },
+      "characteristic": [
+        {
+          "code": {
+            "text": "Age greater than 50"
+          },
+          "description": "Males and postmenopausal females at least 50.0 years of age.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Other Alzheimer's therapy criteria"
+          },
+          "description": "Use of any investigational agent or approved Alzheimer's therapeutic medication within 30 days prior to enrollment into the study.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Serious illness criteria"
+          },
+          "description": "Serious illness which required hospitalization within 3 months of screening.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Serious neurolocal conditions criteria"
+          },
+          "description": "Diagnosis of serious neurological conditions, including - Stroke or vascular dementia documented by clinical history and/or radiographic findings interpretable by the investigator as indicative of these disorders; - Seizure disorder other than simple childhood febrile seizures; - Severe head trauma resulting in protracted loss of consciousness within the last 5 years, or multiple episodes of head trauma; - Parkinson's disease; - Multiple sclerosis; - Amyotrophic lateral sclerosis; - Myasthenia gravis.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Depression criteria"
+          },
+          "description": "Episode of depression meeting DSM-IV criteria within 3 months of screening.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Schizophrenia, Bipolar, Ethanol or psychoactive abuse criteria"
+          },
+          "description": "A history within the last 5 years of the following: - Schizophrenia; - Bipolar Disease; - Ethanol or psychoactive drug abuse or dependence. ;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Syncope criteria"
+          },
+          "description": "A history of syncope within the last 5 years.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "ECG Criteria"
+          },
+          "description": "Evidence from ECG recording at screening of any of the following conditions : - Left bundle branch block; - Bradycardia <=50 beats per minute; - Sinus pauses >2 seconds; - Second or third degree heart block unless treated with a pacemaker; - Wolff-Parkinson-White syndrome; - Sustained supraventricular tachyarrhythmia including SVT\u226510 sec, atrial fibrillation, atrial flutter.; - Ventricular tachycardia at a rate of \u2265120 beats per minute lasting\u226510 seconds.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Cardiovascular criteria"
+          },
+          "description": "A history within the last 5 years of a serious cardiovascular disorder, including - Clinically significant arrhythmia; - Symptomatic sick sinus syndrome not treated with a pacemaker; - Congestive heart failure refractory to treatment; - Angina except angina controlled with PRN nitroglycerin; - Resting heart rate <50 or >100 beats per minute, on physical exam; - Uncontrolled hypertension.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Gastrointensinal criteria"
+          },
+          "description": "A history within the last 5 years of a serious gastrointestinal disorder, including - Chronic peptic/duodenal/gastric/esophageal ulcer that are untreated or refractory to treatment; - Symptomatic diverticular disease; - Inflammatory bowel disease; - Pancreatitis; - Hepatitis; - Cirrhosis of the liver.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Endocrine criteria"
+          },
+          "description": "A history within the last 5 years of a serious endocrine disorder, including - Uncontrolled Insulin Dependent Diabetes Mellitus (IDDM); - Diabetic ketoacidosis; - Untreated hyperthyroidism; - Untreated hypothyroidism; - Other untreated endocrinological disorder;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Diagnosis of Alzheimer's"
+          },
+          "description": "Patients with Probable Mild to Moderate Alzheimer's Disease as defined by National Institute of Neurological and Communicative Disorders and Stroke (NINCDS) and the Alzheimer's Disease and Related Disorders Association (ADRDA) guidelines (Attachment LZZT.7).",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Resporatory criteria"
+          },
+          "description": "A history within the last 5 years of a serious respiratory disorder, including - Asthma with bronchospasm refractory to treatment; - Decompensated chronic obstructive pulmonary disease.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Genitourinary criteria"
+          },
+          "description": "A history within the last 5 years of a serious genitourinary disorder, including - Renal failure; - Uncontrolled urinary retention.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Rheumatologic criteria"
+          },
+          "description": "A history within the last 5 years of a serious rheumatologic disorder, including - Lupus; - Temporal arteritis; - Severe rheumatoid arthritis.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "HIV criteria"
+          },
+          "description": "A known history of human immunodeficiency virus (HIV) within the last 5 years.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Neurosyphilis, Meningitis,Encephalitis criteria"
+          },
+          "description": "A history within the last 5 years of a serious infectious disease including - a) Neurosyphilis; - b) Meningitis; - c) Encephalitis.;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Malignant disease criteria"
+          },
+          "description": "A history within the last 5 years of a primary or recurrent malignant disease with the exception of resected cutaneous squamous cell carcinoma in situ, basal cell carcinoma, cervical carcinoma in situ, or in situ prostate cancer with a normal PSA postresection.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Ability to participate in study criteria"
+          },
+          "description": "Visual, hearing, or communication disabilities impairing the ability to participate in the study; (for example, inability to speak or understand English, illiteracy).",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Laboratory values criteria"
+          },
+          "description": "Laboratory test values exceeding the Lilly Reference Range III for the patient's age in any of the following analytes: \u2191 creatinine, \u2191 total bilirubin, \u2191 SGOT, \u2191 SGPT, \u2191 alkaline phosphatase, \u2191 GGT, \u2191\u2193 hemoglobin, \u2191\u2193 white blood cell count, \u2191\u2193 platelet count, \u2191\u2193 serum sodium, potassium, or calcium. If values exceed these laboratory reference ranges, clinical significance will be judged by the monitoring physicians. If the monitoring physician determines that the deviation from the reference range is not clinically significant, the patient may be included in the study. This decision will be documented.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Central laboratory values criteria"
+          },
+          "description": "Central laboratory test values below reference range for folate, and Vitamin B 12 , and outside reference range for thyroid function tests. - Folate reference range 2.0 to 25.0 ng/mL. Patients will be allowed to enroll if their folate levels are above the upper end of the range if patients are taking vitamin supplements. ; - Vitamin B 12 reference range 130 to 900 pg/mL. Patients will be allowed to enroll if their B 12 levels are above the upper reference range if patients are taking oral vitamin supplements. ; - Thyroid functions Thyroid Uptake reference range 25 to 38%. Patients will be allowed to enroll with results of 23 to 51% provided the remainder of the thyroid profile is normal and there are no clinical signs or symptoms of thyroid abnormality. ; - TSH reference range 0.32 to 5.0. Patients will be allowed to enroll with results of 0.03 to 6.2 if patients are taking stable doses of exogenous thyroid supplements, with normal free thyroid index, and show no clinical signs or symptoms of thyroid abnormality. ; - Total T4 reference range 4.5 to 12.5. Patients will be allowed to enroll with results of 4.1 to 13.4 if patients are taking stable doses of exogenous thyroid hormone, with normal free thyroid index, and show no clinical signs or symptoms of thyroid abnormality. ; - Free Thyroid Index reference range 1.1 to 4.6. ;",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Syphilia criteria"
+          },
+          "description": "Positive syphilis screening. Positive syphilis screening. As determined by positive RPR followed up by confirmatory FTA-Abs. Confirmed patients are excluded unless there is a documented medical history of an alternative disease (for example, yaws) which caused the lab abnormality.",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "MMSE Score"
+          },
+          "description": "MMSE score of 10 to 23.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Hemoglobin criteria"
+          },
+          "description": "Glycosylated hemoglobin (A1C). Required only on patients with known diabetes mellitus or random blood sugar >200 on screening labs. Patients will be excluded if levels are >9.5%",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Medications Criteria"
+          },
+          "description": "Treatment with the following medications within the specified washout periods prior to enrollment and during the study:",
+          "exclude": true
+        },
+        {
+          "code": {
+            "text": "Hachinski Ischemic Score"
+          },
+          "description": "Hachinski Ischemic Scale score of <=4 (Attachment LZZT.8).",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "CNS imaging comptaible with Alzheimer's"
+          },
+          "description": "CNS imaging (CT scan or MRI of brain) compatible with AD within past 1 year.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Informed consent criteria"
+          },
+          "description": "Investigator has obtained informed consent signed by the patient (and/or legal representative) and by the caregiver.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Geographic proximity criteria"
+          },
+          "description": "Geographic proximity to investigator's site that allows adequate follow-up.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Reliable caregiver criteria"
+          },
+          "description": "A reliable caregiver who is in frequent or daily contact with the patient and who will accompany the patient to the office and/or be available by telephone at designated times, will monitor administration of prescribed medications, and will be responsible for the overall care of the patient at home. The caregiver and the patient must be able to communicate in English and willing to comply with 26 weeks of transdermal therapy.",
+          "exclude": false
+        },
+        {
+          "code": {
+            "text": "Previous study criteria"
+          },
+          "description": "Persons who have previously completed or withdrawn from this study or any other study investigating xanomeline TTS or the oral formulation of xanomeline.",
+          "exclude": true
+        }
+      ],
+      "combinationMethod": "all-of"
+    },
+    {
+      "resourceType": "Location",
+      "id": "StudySite_1",
+      "meta": {
+        "versionId": "1",
+        "lastUpdated": "2026-06-22T00:00:00Z"
+      },
+      "address": {
+        "country": "GBR"
+      },
+      "name": "Site One",
+      "type": "location"
+    }
+  ]
+}

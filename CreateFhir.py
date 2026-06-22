@@ -6,6 +6,7 @@ import pandas as pd
 import re
 from collections.abc import Iterable
 from copy import deepcopy
+from datetime import date
 import ResolveTags
 
 _QUOTED_STR_RE = re.compile(r"""
@@ -70,7 +71,13 @@ def get_USDM_info(MapFile,USDMFile):
                         if cell_id not in RowIds:
                             RowIds.append(cell_id)
                         if (USDM_Path.find('criterionItem') != -1 or USDM_Path.find('objectives') != -1) and USDM_Path.find('text') != -1:
-                            cell[cell_id] = ResolveTags.ResolveTag(cell[cell_id], data)
+                            try:
+                                cell[cell_id] = ResolveTags.ResolveTag(cell[cell_id], data)
+                            except Exception as e:
+                                print(USDM_Path)
+                                print(f"Error resolving tags for row {i}, cell_id {cell_id}: {e}")
+                                print(f"Original value: {cell[cell_id]}")
+                                
                         try:
                             ResultMap.append((cell_id, FHIR_path, FHIR_group, cell[cell_id],FHIR_resourcename))
                         except Exception as e:
@@ -235,23 +242,11 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
     fhir_resource.update(x)
     return fhir_resource
 
-def create_fhir_output_old(fhir_resources, output_file="file.json"):
-    # Wrap in FHIR Bundle container
-    entries = [{"resource": res} for res in fhir_resources]
-
-    fhir_bundle = {
-        "resourceType": "Bundle",
-        "type": "collection",
-        "entry": entries
-    }
-    
-    json.dump(fhir_bundle, open(output_file, "w"), indent=2)
-    print(f"FHIR bundle saved to {output_file}")
 
 def create_fhir_output(fhir_resources, output_file="file.json"):
     """
     fhir_resources: list of FHIR resources (dicts)
-      resourceType ∈ {"ResearchStudy", "Location", "Group", ...}
+      resourceType ∈ {"ResearchStudy", "Location", "Group", "EvidenceVariable", ..}
     All Location and Group resources are moved into the `contained` array
     of the first ResearchStudy in the list. All resources (including that
     ResearchStudy) are still present as top‑level bundle entries.
@@ -261,6 +256,7 @@ def create_fhir_output(fhir_resources, output_file="file.json"):
                         if r.get("resourceType") == "ResearchStudy"]
     contained_candidates = [r for r in fhir_resources
                             if r.get("resourceType") != "ResearchStudy"]
+    # print([r.get("resourceType") for r in contained_candidates])
     # If there is at least one ResearchStudy, attach contained resources
     if research_studies and contained_candidates:
         main_rs = research_studies[0]  # pick the first; adjust if needed
@@ -279,7 +275,10 @@ def create_fhir_output(fhir_resources, output_file="file.json"):
         "entry": entries
     }
     with open(output_file, "w") as f:
-        json.dump(fhir_bundle, f, indent=2)
+        if len(research_studies) == 1:
+            json.dump(research_studies[0], f, indent=2)
+        else:
+            json.dump(fhir_bundle, f, indent=2)
     print(f"FHIR bundle saved to {output_file}")
 
 def create_fhir_resources(result_map, row_ids,output_file="file.json"):
@@ -329,6 +328,22 @@ def create_fhir_resources(result_map, row_ids,output_file="file.json"):
             StudySubGroup_map,
             row_ids,
             "Location",
+                {
+                    "versionId": args.version,
+                    "lastUpdated": args.updated
+                }
+                 )
+            
+            MyResources.append(MyResource)
+
+    EvidenceVariable_map = [item for item in result_map if item[4] == "EvidenceVariable"]
+    for i in row_ids:
+        StudySubGroup_map = [item for item in EvidenceVariable_map if item[0]==i]
+        if StudySubGroup_map != []:
+            MyResource=create_fhir_resource(
+            StudySubGroup_map,
+            row_ids,
+            "EvidenceVariable",
                 {
                     "versionId": args.version,
                     "lastUpdated": args.updated
@@ -398,7 +413,6 @@ def paths_to_json(path_value_pairs: list[tuple[str, any]]) -> dict:
     Supports array notation like "coding[0].display".
     """
     def set_nested(obj, keys, value):
-
         for i, key in enumerate(keys[:-1]):
             next_key = keys[i + 1]
             if isinstance(next_key, int):
@@ -409,7 +423,7 @@ def paths_to_json(path_value_pairs: list[tuple[str, any]]) -> dict:
                 obj = obj[key]
             elif isinstance(key, int):
                 try:
-                    #print(obj)
+                    
                     #print(f"Accessing index {key} in list at path segment '{keys[i-1]}'")
                     obj = obj[key]
                 except (IndexError, TypeError):
@@ -506,7 +520,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--updated",
-        default="2023-01-01T00:00:00Z",
+        default=date.today().isoformat() + "T00:00:00Z",
         help="FHIR meta.lastUpdated timestamp."
     )
     args = parser.parse_args()

@@ -153,7 +153,7 @@
 						{
 							"id": "ClassAttr_22",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-label",
-							"valueString": "Non-Small Cell Lung Cancer (NSCLC)",
+							"valueString": "Non-Small Cell Lung Cancer (NSCLC) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -164,7 +164,7 @@
 								"id": "Code_604_23",
 								"extensionAttributes": [],
 								"code": "254637007",
-								"codeSystem": "SNOMED",
+								"codeSystem": "http://snomed.info/sct",
 								"codeSystemVersion": "2025-02-01",
 								"decode": "Non-small cell lung cancer",
 								"instanceType": "Code"
@@ -175,7 +175,7 @@
 						{
 							"id": "ClassAttr_24",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-description",
-							"valueString": "Solid tumor: Non-small cell lung cancer (NSCLC))",
+							"valueString": "Solid tumor: Non-small cell lung cancer (NSCLC)) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -236,7 +236,7 @@
 						{
 							"id": "ClassAttr_32",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-label",
-							"valueString": "Castrate Resistant Prostate Cancer (CRPC)",
+							"valueString": "Castrate Resistant Prostate Cancer (CRPC) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -247,7 +247,7 @@
 								"id": "Code_604_33",
 								"extensionAttributes": [],
 								"code": " 427492003",
-								"codeSystem": "SNOMED",
+								"codeSystem": "http://snomed.info/sct",
 								"codeSystemVersion": "2025-02-01",
 								"decode": "Hormone refractory prostate cancer",
 								"instanceType": "Code"
@@ -258,7 +258,7 @@
 						{
 							"id": "ClassAttr_34",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-description",
-							"valueString": "Solid tumor: Castrate Resistant Prostate Cancer (CRPC)",
+							"valueString": "Solid tumor: Castrate Resistant Prostate Cancer (CRPC) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -319,7 +319,7 @@
 						{
 							"id": "ClassAttr_42",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-label",
-							"valueString": "Melanoma (MEL)",
+							"valueString": "Melanoma (MEL) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -330,7 +330,7 @@
 								"id": "Code_604_43",
 								"extensionAttributes": [],
 								"code": " 372244006",
-								"codeSystem": "SNOMED",
+								"codeSystem": "http://snomed.info/sct",
 								"codeSystemVersion": "2025-02-01",
 								"decode": "Malignant melanoma",
 								"instanceType": "Code"
@@ -341,7 +341,7 @@
 						{
 							"id": "ClassAttr_44",
 							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-description",
-							"valueString": "Solid tumor: Melanoma (MEL)",
+							"valueString": "Solid tumor: Melanoma (MEL) diagnosed during lifetime",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -413,7 +413,7 @@
 								"id": "Code_604_53",
 								"extensionAttributes": [],
 								"code": "94225005",
-							    "codeSystem": "SNOMED",
+							    "codeSystem": "http://snomed.info/sct",
 							    "codeSystemVersion": "2025-02-01",
 							    "decode": "Metastatic malignant neoplasm to brain",
 							  	"instanceType": "Code"
@@ -482,7 +482,7 @@
 						{
 							"id": "ClassAttr_902",
 							"url": "https://cdisc.org/usdm/extension-ExpResponseNode-1/attribute-operator",
-							"valueString": "AND",
+							"valueString": "OR",
 							"extensionAttributes": [],
 							"instanceType": "ExtensionAttribute"					
 						},
@@ -651,6 +651,41 @@
               }
             ],
             "instanceType": "GovernanceDate"
+          },
+		  {
+            "id": "GovernanceDate_02",
+            "extensionAttributes": [],
+            "name": "D_ISSUED",
+            "label": "Last update posted",
+            "description": "Design approval date",
+            "type": {
+              "id": "Code_13_da",
+              "extensionAttributes": [],
+              "code": "C215664",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2025-09-26",
+              "decode": "Issued Date",
+              "instanceType": "Code"
+            },
+            "dateValue": "2015-07-22",
+            "geographicScopes": [
+              {
+                "id": "GeographicScope_02",
+                "extensionAttributes": [],
+                "type": {
+                  "id": "Code_14_da",
+                  "extensionAttributes": [],
+                  "code": "C68846",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2025-09-26",
+                  "decode": "Global",
+                  "instanceType": "Code"
+                },
+                "code": null,
+                "instanceType": "GeographicScope"
+              }
+            ],
+            "instanceType": "GovernanceDate"
           }
         ],
         "amendments": [],
@@ -708,7 +743,7 @@
 							  "id": "CodeE_13",
 							  "extensionAttributes": [],
 							  "code": "94225005",
-							  "codeSystem": "SNOMED",
+							  "codeSystem": "http://snomed.info/sct",
 							  "codeSystemVersion": "2025-02-01",
 							  "decode": "Metastatic malignant neoplasm to brain",
 							  "instanceType": "Code"
@@ -754,7 +789,7 @@
 							  "id": "CodeE_132",
 							  "extensionAttributes": [],
 							  "code": "386033004",
-							  "codeSystem": "SNOMED",
+							  "codeSystem": "http://snomed.info/sct",
 							  "codeSystemVersion": "2025-02-01",
 							  "decode": "Neuropathy",
 							  "instanceType": "Code"
@@ -1432,7 +1467,7 @@
                       "id": "CodeX_3",
                       "extensionAttributes": [],
                       "code": "61871000000107",
-                      "codeSystem": "SNOMED",
+                      "codeSystem": "http://snomed.info/sct",
                       "codeSystemVersion": "2025-02-01",
                       "decode": "Eligibility for treatment",
                       "instanceType": "Code"
@@ -1486,7 +1521,7 @@
                       "id": "CodeX_5",
                       "extensionAttributes": [],
                       "code": "5880005",
-                      "codeSystem": "SNOMED",
+                      "codeSystem": "http://snomed.info/sct",
                       "codeSystemVersion": "2025-02-01",
                       "decode": "Physical examination",
                       "instanceType": "Code"
@@ -1903,7 +1938,7 @@
                     "id": "Code_604",
                     "extensionAttributes": [],
                     "code": "254637007",
-                    "codeSystem": "SNOMED",
+                    "codeSystem": "http://snomed.info/sct",
                     "codeSystemVersion": "2025-02-01",
                     "decode": "Non-small cell lung cancer",
                     "instanceType": "Code"
@@ -1924,7 +1959,7 @@
                     "id": "Code_605",
                     "extensionAttributes": [],
                     "code": " 427492003",
-                    "codeSystem": "SNOMED",
+                    "codeSystem": "http://snomed.info/sct",
                     "codeSystemVersion": "2025-02-01",
                     "decode": "Hormone refractory prostate cancer",
                     "instanceType": "Code"
@@ -1945,7 +1980,7 @@
                     "id": "Code_6050",
                     "extensionAttributes": [],
                     "code": " 372244006",
-                    "codeSystem": "SNOMED",
+                    "codeSystem": "http://snomed.info/sct",
                     "codeSystemVersion": "2025-02-01",
                     "decode": "Malignant melanoma",
                     "instanceType": "Code"
@@ -2112,7 +2147,21 @@
                 "endpoints": [
                   {
                     "id": "Endpoint_2",
-                    "extensionAttributes": [],
+                    "extensionAttributes": [
+					    {
+							"id": "TimAttr_01",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming",
+							"valueId": "Timing_12",
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						},
+						{
+							"id": "BCAttr_01",
+							"url": "https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment",
+							"valueId": "BiomedicalConcept_01",
+							"extensionAttributes": [],
+							"instanceType": "ExtensionAttribute"					
+						}],
                     "name": "END3",
                     "label": "",
                     "description": "",
@@ -3147,7 +3196,7 @@
               {
                 "id": "ScheduleTimeline_1",
                 "extensionAttributes": [],
-                "name": "History Timeline",
+                "name": "HISTORY",
                 "label": "History Timeline",
                 "description": "Timing of periods of the patients history relative to screening enabling EHR record matching.",
                 "mainTimeline": false,
