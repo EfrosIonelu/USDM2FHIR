@@ -1,9 +1,10 @@
 PYTHON = venv/bin/python
 PIP = venv/bin/pip
 IMAGE_NAME = usdm2fhir
+REGISTRY = ghcr.io/efrosionelu/usdm2fhir
 PORT = 8000
 
-.PHONY: setup execute_example run docker-build docker-run docker-stop
+.PHONY: setup execute_example run docker-build docker-run docker-stop docker-push
 
 setup:
 	python3 -m venv venv
@@ -24,4 +25,8 @@ docker-run:
 
 docker-stop:
 	docker stop $(IMAGE_NAME)
+
+docker-push:
+	docker build -t $(REGISTRY):latest .
+	docker push $(REGISTRY):latest
 
