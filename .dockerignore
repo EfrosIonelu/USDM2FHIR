@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.idea/
+.git/
+Input/
+Output/
+Model/
+*.xlsx
+.env
+.DS_Store
+
