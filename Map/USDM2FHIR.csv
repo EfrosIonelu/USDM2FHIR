@@ -94,8 +94,46 @@ purpose SubType,"study.versions.studyDesigns.subTypes.(
                             $c=""C215675"" ? ""Prevalence Study""}
 {id: $Recode(code) ? {""code"": $Recode(code), ""display"": $RecodeDisplay(code), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-purpose-type""}
  : {""text"": decode}})",ResearchStudy,purposeType.coding,purposeType,InterventionalStudyDesign,subTypes
-Study Phase,"study.versions.studyDesigns.studyPhase.standardCodeAliases[codeSystem=""http://terminology.hl7.org/CodeSystem/research-study-phase""].
-{id: {""code"": code, ""display"": decode, ""system"": codeSystem}}",ResearchStudy,phase.coding,,StudyDesign,studyPhase
+Study Phase,"study.versions.studyDesigns.studyPhase.(
+  $cdiscToFhirCode := function($c) {
+    $c = ""C48660"" ? ""n-a"" :
+    $c = ""C54721"" ? ""early-phase-1"" :
+    $c = ""C15600"" ? ""phase-1"" :
+    $c = ""C15693"" ? ""phase-1-phase-2"" :
+    $c = ""C15601"" ? ""phase-2"" :
+    $c = ""C15694"" ? ""phase-2-phase-3"" :
+    $c = ""C15602"" ? ""phase-3"" :
+    $c = ""C15603"" ? ""phase-4"" :
+    null
+  };
+  $cdiscToFhirDisplay := function($c) {
+    $c = ""C48660"" ? ""N/A"" :
+    $c = ""C54721"" ? ""Early Phase 1"" :
+    $c = ""C15600"" ? ""Phase 1"" :
+    $c = ""C15693"" ? ""Phase 1/Phase 2"" :
+    $c = ""C15601"" ? ""Phase 2"" :
+    $c = ""C15694"" ? ""Phase 2/Phase 3"" :
+    $c = ""C15602"" ? ""Phase 3"" :
+    $c = ""C15603"" ? ""Phase 4"" :
+    null
+  };
+  $fhirSystem := ""http://terminology.hl7.org/CodeSystem/research-study-phase"";
+  $alias := standardCodeAliases[codeSystem = $fhirSystem];
+  $alias ?
+    $alias.{id: {""code"": code, ""display"": decode, ""system"": codeSystem}} :
+    $cdiscToFhirCode(standardCode.code) ?
+      {id: {""code"": $cdiscToFhirCode(standardCode.code), ""display"": $cdiscToFhirDisplay(standardCode.code), ""system"": $fhirSystem}} :
+      null
+)",ResearchStudy,phase.coding,,StudyDesign,studyPhase
+Study Phase text,"study.versions.studyDesigns.studyPhase.(
+  $fhirSystem := ""http://terminology.hl7.org/CodeSystem/research-study-phase"";
+  $alias := standardCodeAliases[codeSystem = $fhirSystem];
+  $alias ?
+    {id: $alias.decode} :
+    standardCode.decode ?
+      {id: standardCode.decode} :
+      null
+)",ResearchStudy,phase.text,,StudyDesign,studyPhase
 progress status,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.$rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-state""].
 {$rp.id:{""code"": valueCode.code, ""display"": valueCode.decode, ""system"": valueCode.codeSystem}}",ResearchStudy,progressStatus.state.coding,progressStatus,extension studyProgressStatus,state
 progress status actual,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.$rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-isActive""].

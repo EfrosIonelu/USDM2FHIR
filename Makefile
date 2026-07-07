@@ -4,7 +4,7 @@ IMAGE_NAME = usdm2fhir
 REGISTRY = ghcr.io/efrosionelu/usdm2fhir
 PORT = 8000
 
-.PHONY: setup execute_example run docker-build docker-run docker-stop docker-push
+.PHONY: setup execute_example run jsonata-inspect jsonata-query docker-build docker-run docker-stop docker-push
 
 setup:
 	python3 -m venv venv
@@ -16,6 +16,18 @@ execute_example:
 
 run:
 	$(PYTHON) -m uvicorn main:app --reload --host 0.0.0.0 --port $(PORT)
+
+# Evaluează o expresie JSONata și afișează metadata rezultatului.
+# Utilizare: make jsonata-inspect EXPR="study.versions"
+# Flags opționali: FLAGS="--json"  sau  FLAGS="--raw"
+jsonata-inspect:
+	$(PYTHON) -m app.command.jsonata_inspect "$(EXPR)" $(FLAGS)
+
+# Evaluează o expresie JSONata și returnează rezultatul real (truncat la 250 chars dacă e prea mare).
+# Utilizare: make jsonata-query EXPR="study.versions[0].versionIdentifier"
+# Flags opționali: FLAGS="--json"
+jsonata-query:
+	$(PYTHON) -m app.command.jsonata_query "$(EXPR)" $(FLAGS)
 
 docker-build:
 	docker build -t $(IMAGE_NAME) .
