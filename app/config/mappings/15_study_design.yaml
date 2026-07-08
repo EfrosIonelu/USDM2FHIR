@@ -8,7 +8,7 @@ mappings:
           $c = "C98388" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01001", "display": "interventional research"} :
           $c = "C16084" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01002", "display": "observational research"} :
           $c = "C98722" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01038", "display": "expanded access study"} :
-          $c = "C129000" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01042", "display": "expanded access study"} :
+          $c = "C129000" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01042", "display": "secondary data collection from a registry"} :
           null
         };
         $result := $Recode(code);
@@ -20,10 +20,10 @@ mappings:
     usdm_class: StudyDesign
     usdm_attribute: studyType
 
-  - item: Study Design cohort design (uncontrolled when 0 cohorts)
+  - item: Study Design cohort design (uncontrolled when cohorts <= 1 and arms <= 1)
     usdm_path: |
       study.versions.studyDesigns.(
-        $count(population.cohorts) = 0 ? {id & "_uncontrolled": {"coding": [{"system": "https://fevir.net/sevco", "code": "SEVCO:01016", "display": "uncontrolled cohort design"}]}} : null
+        $count(population.cohorts) <= 1 and $count(arms) <= 1 ? {id & "_uncontrolled": {"coding": [{"system": "https://fevir.net/sevco", "code": "SEVCO:01016", "display": "uncontrolled cohort design"}]}} : null
       )
     fhir_resource: ResearchStudy
     fhir_path: studyDesign
