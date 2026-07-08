@@ -1,0 +1,48 @@
+description: "Comparison group mappings — ResearchStudy.comparisonGroup (arms and cohorts)"
+
+mappings:
+  - item: Arm name
+    usdm_path: |
+      study.versions.studyDesigns.arms.label
+    fhir_resource: ResearchStudy
+    fhir_path: comparisonGroup.name
+    fhir_index: comparisonGroup
+    usdm_class: StudyArm
+    usdm_attribute: label
+
+  - item: Arm description
+    usdm_path: |
+      study.versions.studyDesigns.arms.description
+    fhir_resource: ResearchStudy
+    fhir_path: comparisonGroup.description
+    fhir_index: comparisonGroup
+    usdm_class: StudyArm
+    usdm_attribute: description
+
+  - item: Cohort name
+    usdm_path: |
+      study.versions.studyDesigns.population.cohorts.label
+    fhir_resource: ResearchStudy
+    fhir_path: comparisonGroup.name
+    fhir_index: comparisonGroup
+    usdm_class: studyCohort
+    usdm_attribute: label
+
+  - item: Cohort description
+    usdm_path: |
+      study.versions.studyDesigns.population.cohorts.description
+    fhir_resource: ResearchStudy
+    fhir_path: comparisonGroup.description
+    fhir_index: comparisonGroup
+    usdm_class: studyCohort
+    usdm_attribute: description
+
+  - item: Cohort planned number
+    usdm_path: |
+      study.versions.studyDesigns.population.cohorts.plannedEnrollmentNumber.value
+    fhir_resource: ResearchStudy
+    fhir_path: comparisonGroup.targetNumber
+    fhir_index: comparisonGroup
+    usdm_class: studyCohort
+    usdm_attribute: plannedEnrollmentNumber
+

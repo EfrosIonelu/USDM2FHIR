@@ -1,0 +1,65 @@
+description: "Eligibility criteria mappings — Group-all resource (the combined eligibility list)"
+
+mappings:
+  - item: Eligibility overall list id
+    usdm_path: |
+      {"eligibility-criteria": "eligibility-criteria"}
+    fhir_resource: Group-all
+    fhir_path: id
+
+  - item: combination method general
+    usdm_path: |
+      {"eligibility-criteria": "all-of"}
+    fhir_resource: Group-all
+    fhir_path: combinationMethod
+
+  - item: Eligibility criteria text
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.
+        {$ex.id: $sv.eligibilityCriterionItems[id=$ex.criterionItemId].text})
+    fhir_resource: Group-all
+    fhir_path: characteristic.description
+    fhir_index: characteristic
+    usdm_class: EligibilityCriterionItem
+
+  - item: Eligibility criteria code
+    usdm_path: |
+      study.versions.studyDesigns.eligibilityCriteria.{id: label}
+    fhir_resource: Group-all
+    fhir_path: characteristic.code.text
+    fhir_index: characteristic
+    usdm_class: EligibilityCriterionItem
+
+  - item: "Exclusion criterion true/false?"
+    usdm_path: |
+      study.versions.studyDesigns.eligibilityCriteria.{id: category.code="C25370"}
+    fhir_resource: Group-all
+    fhir_path: characteristic.exclude
+    fhir_index: characteristic
+    usdm_class: EligibilityCriterion
+    usdm_attribute: category
+
+  - item: Group references
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].("#"& id);
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes["#" & valueId in $respIds]].("#" & id);
+        {$ex.id: $nodeIds ? $nodeIds : $respIds}))
+    fhir_resource: Group-all
+    fhir_path: characteristic.valueReference.reference
+    fhir_index: characteristic
+
+  - item: Node reference indication
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        {$ex.id: ($respIds) ? "Group"}))
+    fhir_resource: Group-all
+    fhir_path: characteristic.valueReference.type
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: atTiming
+

@@ -4,7 +4,7 @@ IMAGE_NAME = usdm2fhir
 REGISTRY = ghcr.io/efrosionelu/usdm2fhir
 PORT = 8000
 
-.PHONY: setup execute_example run jsonata-inspect jsonata-query docker-build docker-run docker-stop docker-push
+.PHONY: setup execute_example run jsonata-inspect jsonata-query yaml-to-csv docker-build docker-run docker-stop docker-push
 
 setup:
 	python3 -m venv venv
@@ -13,6 +13,14 @@ setup:
 
 execute_example:
 	$(PYTHON) CreateFhir.py --map Map/USDM2FHIR.csv --usdm Input/NCT01750580_limited_tagged_resp.json --output Output/MyNewFile_2.json
+
+# Merge all YAML mapping files into Map/USDM2FHIR.csv
+# Usage: make yaml-to-csv
+# Optional: make yaml-to-csv MAPPINGS_DIR=app/config/mappings OUTPUT=Map/USDM2FHIR.csv
+yaml-to-csv:
+	$(PYTHON) -m app.command.yaml_to_csv \
+		--mappings-dir $(or $(MAPPINGS_DIR),app/config/mappings) \
+		--output $(or $(OUTPUT),Map/USDM2FHIR.csv)
 
 run:
 	$(PYTHON) -m uvicorn main:app --reload --host 0.0.0.0 --port $(PORT)

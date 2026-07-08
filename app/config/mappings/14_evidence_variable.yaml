@@ -1,0 +1,43 @@
+description: "Evidence variable mappings — EvidenceVariable resource (biomedical concept endpoints)"
+
+mappings:
+  - item: Evidence variable id
+    usdm_path: |
+      study.versions.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$bcId: $bcId })
+    fhir_resource: EvidenceVariable
+    fhir_path: id
+
+  - item: Evidence variable name
+    usdm_path: |
+      study.versions@$sv.$sv.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$bcId: $sv.biomedicalConcepts[id=$bcId].name })
+    fhir_resource: EvidenceVariable
+    fhir_path: name
+
+  - item: Evidence variable title
+    usdm_path: |
+      study.versions@$sv.$sv.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$bcId: $sv.biomedicalConcepts[id=$bcId].label })
+    fhir_resource: EvidenceVariable
+    fhir_path: title
+
+  - item: Evidence variable description
+    usdm_path: |
+      study.versions@$sv.$sv.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$bcId: $sv.biomedicalConcepts[id=$bcId].description })
+    fhir_resource: EvidenceVariable
+    fhir_path: description
+
+  - item: Evidence classifier (note that questionnaires should get another code / not taken care of yet)
+    usdm_path: |
+      study.versions@$sv.$sv.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$bcId: {"code" : "measurement", "display": "Measurement", "system": "http://hl7.org/fhir/evidence-variable-classifier-example"} })
+    fhir_resource: EvidenceVariable
+    fhir_path: classifier
+

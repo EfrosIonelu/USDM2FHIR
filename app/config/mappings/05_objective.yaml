@@ -1,0 +1,104 @@
+description: "Objective and outcome measure mappings — ResearchStudy.objective"
+
+mappings:
+  - item: Objective text
+    usdm_path: |
+      study.versions.studyDesigns.objectives.{id: text}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.name
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: text
+
+  - item: Objective primary level (code)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C85826"].{id: "primary"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.code
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: type
+
+  - item: Objective primary level (display)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C85826"].{id: "Primary"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.display
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: level
+
+  - item: Objective codeSystem FHIR
+    usdm_path: |
+      study.versions.studyDesigns.objectives.{id: "http://terminology.hl7.org/CodeSystem/research-study-objective-type"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.system
+    fhir_index: objective
+
+  - item: Objective secondary level (code)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C85827"].{id: "secondary"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.code
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: level
+
+  - item: Objective secondary level (display)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C85827"].{id: "Secondary"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.display
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: level
+
+  - item: Objective exploratory level (code)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C163559"].{id: "exploratory"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.code
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: level
+
+  - item: Objective exploratory level (display)
+    usdm_path: |
+      study.versions.studyDesigns.objectives[level.code="C163559"].{id: "Exploratory"}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.type.coding.display
+    fhir_index: objective
+    usdm_class: Objective
+    usdm_attribute: level
+
+  - item: Outcome measurement reference or display
+    usdm_path: |
+      study.versions.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $bcId := extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId;
+          {$ob.id: $bcId ? {"reference": "#" & extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-relatedAssessment"].valueId, "type": "EvidenceVariable" }})
+    fhir_resource: ResearchStudy
+    fhir_path: objective.outcomeMeasure.endpoint
+    fhir_index: "objective;outcomeMeasure"
+    usdm_class: Endpoint
+    usdm_attribute: text
+
+  - item: Outcome measurement display
+    usdm_path: |
+      study.versions.studyDesigns.objectives@$ob.$ob.endpoints.{$ob.id: text}
+    fhir_resource: ResearchStudy
+    fhir_path: objective.outcomeMeasure.endpoint.display
+    fhir_index: "objective;outcomeMeasure"
+    usdm_class: Endpoint
+
+  - item: Endpoint level
+    usdm_path: |
+      study.versions.studyDesigns.objectives@$ob.$ob.endpoints.(
+          $firstWord := function($s) {$split($s, " ")[0]};
+          $titleCase := function($s) {$join($split($lowercase($s), " ")@$w.($uppercase($substring($w, 0, 1)) & $substring($w, 1))," ")};
+      {$ob.id: {"code":$lowercase($firstWord(level.decode)), "display": $titleCase($firstWord(level.decode)), "system": "http://terminology.hl7.org/CodeSystem/research-study-objective-type"}})
+    fhir_resource: ResearchStudy
+    fhir_path: objective.outcomeMeasure.type.coding
+    fhir_index: "objective;outcomeMeasure"
+    usdm_class: Endpoint
+    usdm_attribute: level
+

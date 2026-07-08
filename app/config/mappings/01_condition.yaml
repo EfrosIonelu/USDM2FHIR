@@ -1,0 +1,21 @@
+description: "Condition / indication mappings — ResearchStudy.condition"
+
+mappings:
+  - item: Condition label
+    usdm_path: |
+      study.versions.studyDesigns.indications.{id: label}
+    fhir_resource: ResearchStudy
+    fhir_path: condition.text
+    fhir_index: condition
+    usdm_class: Indication
+    usdm_attribute: label
+
+  - item: Condition code
+    usdm_path: |
+      study.versions.studyDesigns.indications.{id: {"code": codes.code, "display": codes.decode, "system": codes.codeSystem}}
+    fhir_resource: ResearchStudy
+    fhir_path: condition.coding
+    fhir_index: condition
+    usdm_class: Indication
+    usdm_attribute: codes
+

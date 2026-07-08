@@ -1,0 +1,366 @@
+description: "Eligibility sub-group mappings — Group resource (expected responses, timing, value ranges)"
+
+mappings:
+  - item: eligibility criteria subgroup referenced id
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        {$RefId: $RefId}))
+    fhir_resource: Group
+    fhir_path: id
+    usdm_class: ExpectedResponse
+    usdm_attribute: id
+
+  - item: eligibility criteria - response combination method
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $nodeOperator := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1"].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponseNode-1/attribute-operator"].valueString;
+        $GetMethod := function($m){$m="AND"? "all-of" : $m="OR" ? "any-of" : "unknown"};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $method := $nodeIds ? $GetMethod($nodeOperator) : "all-of";
+        {$RefId: $method}))
+    fhir_resource: Group
+    fhir_path: combinationMethod
+
+  - item: expected response label (set to "Node" for combinations)
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $labelResp := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-label"].valueString;
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $label := $nodeIds ? "Node" : $labelResp;
+        {$RefId: $label}))
+    fhir_resource: Group
+    fhir_path: description
+    usdm_class: ExpectedResponse
+    usdm_attribute: label
+
+  - item: expected response min value
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueRange.minValue.value};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueRange.low.value
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: expected response min value unit
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueRange.minValue.unit.standardCode.decode};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueRange.low.unit
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: expected response max value - single response
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueRange.maxValue.value};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueRange.high.value
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: expected response max value unit
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueRange.maxValue.unit.standardCode.decode};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueRange.high.unit
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: expected response description
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-description"].valueString};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.description
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: description
+
+  - item: Expected response value code
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueCode.code};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueCodeableConcept.coding.code
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: codes
+
+  - item: Expected response value decode
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueCode.decode};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueCodeableConcept.coding.display
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: codes
+
+  - item: Expected response value codeSystem
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueCode.codeSystem};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueCodeableConcept.coding.system
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: codes
+
+  - item: expected response quantity - single response
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueQuantity.value};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueQuantity.value
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: expected response unit
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-value"].valueQuantity.unit.standardCode.decode};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.valueQuantity.unit
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: value
+
+  - item: Group low timing range
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $toDays := function($d) {
+          $contains($d, "W") ? $number($replace($replace($d, "P", ""), "W", "")) * 7 :
+          $contains($d, "Y") ? $number($replace($replace($d, "P", ""), "Y", "")) * 365 :
+          $number($replace($replace($d, "P", ""), "D", ""))  };$GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $lowDays := function($t, $v, $l) { $t = "C201357" ? -($toDays($v) + $toDays($l)) :    $t = "C201356" ? $toDays($v) - $toDays($l) :    0};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $lowerArray := $timeArray@$tId.(
+            $tm := $sv.studyDesigns.scheduleTimelines.timings[id = $tId];
+            $lowDays($tm.type.code, $tm.value, $tm.windowLower)
+          );
+        {$RefId: [$lowerArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.offsetRange.low.value
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: atTiming
+
+  - item: Group low timing unit
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $dArray := $timeArray@$tId.('d');
+        {$RefId: [$dArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.offsetRange.low.unit
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: atTiming
+
+  - item: Group high timing range
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $toDays := function($d) {
+          $contains($d, "W") ? $number($replace($replace($d, "P", ""), "W", "")) * 7 :
+          $contains($d, "Y") ? $number($replace($replace($d, "P", ""), "Y", "")) * 365 :
+          $number($replace($replace($d, "P", ""), "D", ""))  };$GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $highDays := function($t, $v, $u) { $t = "C201357" ? -$toDays($v) + $toDays($u) :    $t = "C201356" ? $toDays($v) + $toDays($u) :    0  };
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $upperArray := $timeArray@$tId.(
+            $tm := $sv.studyDesigns.scheduleTimelines.timings[id = $tId];
+            $highDays($tm.type.code, $tm.value, $tm.windowUpper)
+          );
+        {$RefId: [$upperArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.offsetRange.high.value
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: atTiming
+
+  - item: Group high timing unit
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $dArray := $timeArray@$tId.('d');
+        {$RefId: [$dArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.offsetRange.high.unit
+    fhir_index: characteristic
+    usdm_class: ExpectedResponse
+    usdm_attribute: atTiming
+
+  - item: relative time context code
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $dArray := $timeArray@$tId.("709491003");
+        {$RefId: [$dArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.contextCode.coding.code
+    fhir_index: characteristic
+
+  - item: relative time context display
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $dArray := $timeArray@$tId.("Enrollment in clinical trial");
+        {$RefId: [$dArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.contextCode.coding.display
+    fhir_index: characteristic
+
+  - item: relative time context system
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-atTiming"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $timeArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $dArray := $timeArray@$tId.("http://snomed.info/sct");
+        {$RefId: [$dArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.relativeTime.contextCode.coding.system
+    fhir_index: characteristic
+
+  - item: "Exclusion criterion true or false?"
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-subCategory"].valueCode.(code="C25370")};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $result := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        {$RefId: [$result]}))
+    fhir_resource: Group
+    fhir_path: characteristic.exclude
+    fhir_index: characteristic
+    usdm_class: EligibilityCriterion
+    usdm_attribute: category
+
+  - item: Loinc Code of assessment
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+        $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+        $nodeIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponseNode/class1" and extensionAttributes.extensionAttributes[valueId in $respIds]].id;
+        $GetResult := function($id){$sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].
+      extensionAttributes[url="https://cdisc.org/usdm/extension-ExpResponse-1/attribute-forAssessment"].valueId};
+        $RefId := $nodeIds ? $nodeIds : $respIds;
+        $bcArray := $nodeIds ? $GetResult($nodeIds) : $GetResult($respIds);
+        $cdArray := $bcArray@$tId.($sv.biomedicalConcepts[id = $tId].code.standardCodeAliases[codeSystem="http://loinc.org"].{"code": code, "display": decode, "system": codeSystem});
+        {$RefId: [$cdArray]}))
+    fhir_resource: Group
+    fhir_path: characteristic.code.coding
+    fhir_index: characteristic
+    usdm_class: BiomedicalConcept
+    usdm_attribute: code
+

@@ -1,0 +1,64 @@
+description: "Study title / label mappings — ResearchStudy.label and ResearchStudy.title"
+
+mappings:
+  - item: Study titles
+    usdm_path: |
+      study.versions.titles.{id: text}
+    fhir_resource: ResearchStudy
+    fhir_path: label.value
+    fhir_index: label
+    usdm_class: StudyTitle
+    usdm_attribute: text
+
+  - item: Official title
+    usdm_path: |
+      study.versions.titles[type.code="C207616"].{id: text}
+    fhir_resource: ResearchStudy
+    fhir_path: title
+    usdm_class: StudyTitle
+    usdm_attribute: text
+
+  - item: Title type
+    usdm_path: |
+      study.versions.titles.(
+          $titleCode := function($c) {$c="C207616" ? "official" : $c="C207615" ? "short-title" :$c="C94108" ? "acronym" : $c="C207618" ? "scientific"};
+          $titleDisplay := function($c) {$c="C207616" ? "Official title" : $c="C207615" ? "Short title" :$c="C94108" ? "Acronym"  : $c="C207618" ? "Scientific title"};
+          {id: {"code": $titleCode(type.code), "display": $titleDisplay(type.code), "system":"http://hl7.org/fhir/title-type"}})
+    fhir_resource: ResearchStudy
+    fhir_path: label.type.coding
+    fhir_index: label
+    usdm_class: StudyTitle
+    usdm_attribute: type
+
+  - item: Translated titles
+    usdm_path: |
+      study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url="http://cdisc.org/usdm/extensions/extensionR-1/class-1"])@$tr.
+      {$tr.id: $tr.extensionAttributes[url="text"].valueString}
+    fhir_resource: ResearchStudy
+    fhir_path: label.value
+    fhir_index: label
+    usdm_class: StudyTitle
+    usdm_attribute: extension
+
+  - item: Translated title type
+    usdm_path: |
+      study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url="http://cdisc.org/usdm/extensions/extensionR-1/class-1"])@$tr.
+      (   $titleCode := function($c) {$c="C207616" ? "official" : $c="C207615" ? "short-title" :$c="C94108" ? "acronym" : $c="C207618" ? "scientific"};
+          $titleDisplay := function($c) {$c="C207616" ? "Official title" : $c="C207615" ? "Short title" :$c="C94108" ? "Acronym"  : $c="C207618" ? "Scientific title"};
+          {$tr.id: {"code": $titleCode($tt.type.code), "display": $titleDisplay($tt.type.code), "system":"http://hl7.org/fhir/title-type"}})
+    fhir_resource: ResearchStudy
+    fhir_path: label.type.coding
+    fhir_index: label
+    usdm_class: StudyTitle
+    usdm_attribute: type
+
+  - item: Translated title language
+    usdm_path: |
+      study.versions.titles@$tt.($tt.extensionAttributes.extensionAttributes.valueExtensionClass[url="http://cdisc.org/usdm/extensions/extensionR-1/class-1"])@$tr.
+      {$tr.id: $tr.extensionAttributes[url="language"].valueCode.code}
+    fhir_resource: ResearchStudy
+    fhir_path: label.language
+    fhir_index: label
+    usdm_class: StudyTitle
+    usdm_attribute: extension
+

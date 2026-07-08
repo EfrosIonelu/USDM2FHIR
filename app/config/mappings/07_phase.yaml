@@ -1,0 +1,57 @@
+description: "Study phase mappings — ResearchStudy.phase"
+
+mappings:
+  - item: Study Phase
+    usdm_path: |
+      study.versions.studyDesigns.studyPhase.(
+        $cdiscToFhirCode := function($c) {
+          $c = "C48660" ? "n-a" :
+          $c = "C54721" ? "early-phase-1" :
+          $c = "C15600" ? "phase-1" :
+          $c = "C15693" ? "phase-1-phase-2" :
+          $c = "C15601" ? "phase-2" :
+          $c = "C15694" ? "phase-2-phase-3" :
+          $c = "C15602" ? "phase-3" :
+          $c = "C15603" ? "phase-4" :
+          null
+        };
+        $cdiscToFhirDisplay := function($c) {
+          $c = "C48660" ? "N/A" :
+          $c = "C54721" ? "Early Phase 1" :
+          $c = "C15600" ? "Phase 1" :
+          $c = "C15693" ? "Phase 1/Phase 2" :
+          $c = "C15601" ? "Phase 2" :
+          $c = "C15694" ? "Phase 2/Phase 3" :
+          $c = "C15602" ? "Phase 3" :
+          $c = "C15603" ? "Phase 4" :
+          null
+        };
+        $fhirSystem := "http://terminology.hl7.org/CodeSystem/research-study-phase";
+        $alias := standardCodeAliases[codeSystem = $fhirSystem];
+        $alias ?
+          $alias.{id: {"code": code, "display": decode, "system": codeSystem}} :
+          $cdiscToFhirCode(standardCode.code) ?
+            {id: {"code": $cdiscToFhirCode(standardCode.code), "display": $cdiscToFhirDisplay(standardCode.code), "system": $fhirSystem}} :
+            null
+      )
+    fhir_resource: ResearchStudy
+    fhir_path: phase.coding
+    usdm_class: StudyDesign
+    usdm_attribute: studyPhase
+
+  - item: Study Phase text
+    usdm_path: |
+      study.versions.studyDesigns.studyPhase.(
+        $fhirSystem := "http://terminology.hl7.org/CodeSystem/research-study-phase";
+        $alias := standardCodeAliases[codeSystem = $fhirSystem];
+        $alias ?
+          {id: $alias.decode} :
+          standardCode.decode ?
+            {id: standardCode.decode} :
+            null
+      )
+    fhir_resource: ResearchStudy
+    fhir_path: phase.text
+    usdm_class: StudyDesign
+    usdm_attribute: studyPhase
+

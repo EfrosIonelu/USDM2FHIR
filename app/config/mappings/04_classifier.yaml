@@ -1,0 +1,116 @@
+description: "Population classifier mappings — ResearchStudy.classifier (age, sex, healthy volunteers)"
+
+mappings:
+  - item: Minimum Age text
+    usdm_path: |
+      {"id01": "Minimum Age: " & $min([study.versions.studyDesigns.population.plannedAge.minValue.value,study.versions.studyDesigns.population.cohorts.plannedAge.minValue.value]) &
+      " " & $distinct(study.versions.studyDesigns.population.plannedAge.minValue.unit.standardCode.decode) &"s"
+      &  $substring($distinct(study.versions.studyDesigns.population.cohorts.plannedAge.minValue.unit.standardCode.decode),0,1)}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier.text
+    fhir_index: classifier
+    usdm_class: PopulationDefinition
+    usdm_attribute: plannedAge
+
+  - item: Maximum Age text
+    usdm_path: |
+      {"id02": "Maximum Age: " & $min([study.versions.studyDesigns.population.plannedAge.maxValue.value,study.versions.studyDesigns.population.cohorts.plannedAge.maxValue.value]) &
+      " " & $distinct(study.versions.studyDesigns.population.plannedAge.maxValue.unit.standardCode.decode) &"s"
+      &  $substring($distinct(study.versions.studyDesigns.population.cohorts.plannedAge.maxValue.unit.standardCode.decode),0,1)}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier.text
+    fhir_index: classifier
+    usdm_class: PopulationDefinition
+    usdm_attribute: plannedAge
+
+  - item: Includes females code (cohort definitions not included)
+    usdm_path: |
+      "C16576" in study.versions.studyDesigns.population.plannedSex.code ? {"f01": {"coding": {
+              "code": "includes-females",
+              "display": "Includes female subjects",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}} : " "
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: PopulationDefinition
+    usdm_attribute: PlannedSex
+
+  - item: Includes males code (cohort definitions not included)
+    usdm_path: |
+      "C20197" in study.versions.studyDesigns.population.plannedSex.code ? {"m01": {"coding": {
+              "code": "includes-males",
+              "display": "Includes male subjects",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}} : " "
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: PlannedSex
+
+  - item: no healthy subjects code (cohort definitions not included)
+    usdm_path: |
+      study.versions.studyDesigns.population[includesHealthySubjects=false].{id: {"coding": {
+              "code": "does-not-include-healthy-volunteers",
+              "display": "Does not include healthy volunteers",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: includesHealthySubjects
+
+  - item: healthy subjects code (cohort definitions not included)
+    usdm_path: |
+      study.versions.studyDesigns.population[includesHealthySubjects=true].{id: {"coding": {
+              "code": "includes-healthy-volunteers",
+              "display": "Includes healthy volunteers",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: includesHealthySubjects
+
+  - item: age category 0-17 (Only based on population and year unit)
+    usdm_path: |
+      study.versions.studyDesigns.population.plannedAge[minValue.value<18 and minValue.unit.standardCode.code="C29848"].{id: {"coding": {
+              "code": "includes-ages-0-17",
+              "display": "Includes ages 0-17 years",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: plannedAge
+
+  - item: age category 18-64 (Only based on population and year unit)
+    usdm_path: |
+      study.versions.studyDesigns.population.plannedAge[(minValue.value<65 and minValue.unit.standardCode.code="C29848") and (maxValue.value>17 and maxValue.unit.standardCode.code="C29848") ].{id&"b": {"coding": {
+              "code": "includes-ages-18-64",
+              "display": "Includes ages 18-64 years",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: plannedAge
+
+  - item: age category 65 and older (Only based on population and year unit)
+    usdm_path: |
+      study.versions.studyDesigns.population.plannedAge[(maxValue.value>64 and maxValue.unit.standardCode.code="C29848")].{id&"c": {"coding": {
+              "code": "includes-ages-65-and-older",
+              "display": "Includes ages 65 and older",
+              "system": "https://fevir.net/resources/CodeSystem/419455"
+            }}}
+    fhir_resource: ResearchStudy
+    fhir_path: classifier
+    fhir_index: classifier
+    usdm_class: StudyDesignPopulation
+    usdm_attribute: plannedAge
+

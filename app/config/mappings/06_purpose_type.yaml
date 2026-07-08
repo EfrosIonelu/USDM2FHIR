@@ -1,0 +1,36 @@
+description: "Purpose type mappings — ResearchStudy.purposeType (intent + subtype)"
+
+mappings:
+  - item: purpose Intent
+    usdm_path: |
+      study.versions.studyDesigns.intentTypes.(
+          $Recode := function($c){$c="C49656" ? "treatment" : $c="C49657" ? "prevention" : $c="C49653" ? "diagnostic" : $c="C71485" ? "screening" :
+              $c="C71486" ? "supportive-care" : $c="C15245" ? "health-services-research" : $c="C15714" ? "basic-science" : $c="C139174" ? "device-feasibility"};
+          $RecodeDisplay := function($c){$c="C49656" ? "Treatment Study" : $c="C49657" ? "Prevention Study" : $c="C49653" ? "Diagnostic Study" : $c="C71485" ? "Screening Study" :
+              $c="C71486" ? "Supportive Care Study" : $c="C15245" ? "Health Services Research" : $c="C15714" ? "Basic Science" : $c="C139174" ? "Device Feasibility Study"};
+      {id: {"code": $Recode(code), "display": $RecodeDisplay(code), "system": "http://terminology.hl7.org/CodeSystem/research-study-purpose-type"}})
+    fhir_resource: ResearchStudy
+    fhir_path: purposeType.coding
+    fhir_index: purposeType
+    usdm_class: InterventionalStudyDesign
+    usdm_attribute: intentTypes
+
+  - item: purpose SubType
+    usdm_path: |
+      study.versions.studyDesigns.subTypes.(
+          $Recode := function($c){$c="C49667" ? "safety" : $c="C49666" ? "efficacy" : $c="C49663" ? "pharmacokinetic" :
+                                  $c="C49662" ? "pharmacodynamic" : $c="C49665" ? "bioequivalence" : $c="C127803" ? "dose-response" :
+                                  $c="C129001" ? "pharmacogenetic" : $c="C49661" ? "pharmacogenomic" : $c="C215653" ? "incidence" :
+                                  $c="C215675" ? "prevalence"};
+          $RecodeDisplay := function($c){$c="C49667" ? "Safety Study" : $c="C49666" ? "Efficacy Study" : $c="C49663" ? "Pharmacokinetic Study" :
+                                  $c="C49662" ? "Pharmacodynamic Study" : $c="C49665" ? "Bioequivalence Study" : $c="C127803" ? "Dose-Response Study" :
+                                  $c="C129001" ? "Pharmacogenetic Study" : $c="C49661" ? "Pharmacogenomic Study": $c="C215653" ? "Incidence Study" :
+                                  $c="C215675" ? "Prevalence Study"}
+      {id: $Recode(code) ? {"code": $Recode(code), "display": $RecodeDisplay(code), "system": "http://terminology.hl7.org/CodeSystem/research-study-purpose-type"}
+       : {"text": decode}})
+    fhir_resource: ResearchStudy
+    fhir_path: purposeType.coding
+    fhir_index: purposeType
+    usdm_class: InterventionalStudyDesign
+    usdm_attribute: subTypes
+

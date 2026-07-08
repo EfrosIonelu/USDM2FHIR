@@ -1,0 +1,44 @@
+description: "Study identifier mappings — ResearchStudy.identifier"
+
+mappings:
+  - item: Study Identifier
+    usdm_path: |
+      study.versions.studyIdentifiers.{id: text}
+    fhir_resource: ResearchStudy
+    fhir_path: identifier.value
+    fhir_index: identifier
+    usdm_class: StudyIdentifier
+    usdm_attribute: text
+
+  - item: Study Identifier FHIR type
+    usdm_path: |
+      study.versions.studyIdentifiers.{id: "study identifier"}
+    fhir_resource: ResearchStudy
+    fhir_path: identifier.codeableConcept.text
+    fhir_index: identifier
+    usdm_class: StudyIdentifier
+
+  - item: Study Identifier Organization
+    usdm_path: |
+      (study.versions)@$sv.$sv.studyIdentifiers@$id.$id{id: $sv.organizations[id=$id.scopeId].label}
+    fhir_resource: ResearchStudy
+    fhir_path: identifier.assigner.display
+    fhir_index: identifier
+    usdm_class: StudyIdentifier
+    usdm_attribute: scope
+
+  - item: NCT identifier system
+    usdm_path: |
+      study.versions.studyIdentifiers[$substring(text,0,3)="NCT"].{id: "http://terminology.hl7.org/NamingSystem/ClinicalTrials-Gov"}
+    fhir_resource: ResearchStudy
+    fhir_path: identifier.system
+    fhir_index: identifier
+    usdm_class: StudyIdentifier
+
+  - item: Identifier use
+    usdm_path: |
+      study.versions.studyIdentifiers.{id: "official"}
+    fhir_resource: ResearchStudy
+    fhir_path: identifier.use
+    fhir_index: identifier
+

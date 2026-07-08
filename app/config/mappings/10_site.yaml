@@ -1,0 +1,40 @@
+description: "Site mappings — ResearchStudy.site reference + Location resource fields"
+
+mappings:
+  - item: location reference
+    usdm_path: |
+      study.versions.organizations.managedSites.{id: {"reference": "#" & id, "type":"Location"}}
+    fhir_resource: ResearchStudy
+    fhir_path: site
+    fhir_index: site
+    usdm_class: StudySite
+    usdm_attribute: id
+
+  - item: location id
+    usdm_path: |
+      study.versions.organizations.managedSites.{id: id}
+    fhir_resource: Location
+    fhir_path: id
+
+  - item: site name
+    usdm_path: |
+      study.versions.organizations.managedSites.{id: label}
+    fhir_resource: Location
+    fhir_path: name
+    usdm_class: StudySite
+    usdm_attribute: label
+
+  - item: site type
+    usdm_path: |
+      study.versions.organizations.managedSites.{id: "location"}
+    fhir_resource: Location
+    fhir_path: type
+
+  - item: site country
+    usdm_path: |
+      study.versions.organizations.managedSites.{id: country.code}
+    fhir_resource: Location
+    fhir_path: address.country
+    usdm_class: StudySite
+    usdm_attribute: country
+

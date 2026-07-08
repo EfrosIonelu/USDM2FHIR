@@ -1,0 +1,10 @@
+description: "Recruitment eligibility mappings — ResearchStudy.recruitment"
+
+mappings:
+  - item: Reference to group of criteria
+    usdm_path: |
+      {"eligibility-criteria": {"reference": "#eligibility-criteria", "type":"Group"}}
+    fhir_resource: ResearchStudy
+    fhir_path: recruitment.eligibility
+    fhir_index: recruitment
+

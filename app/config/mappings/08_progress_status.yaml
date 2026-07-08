@@ -1,0 +1,34 @@
+description: "Study progress status mappings — ResearchStudy.progressStatus"
+
+mappings:
+  - item: progress status
+    usdm_path: |
+      (study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-studyProgressStatus/class1"])@$rp.$rp.extensionAttributes[url="https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-state"].
+      {$rp.id:{"code": valueCode.code, "display": valueCode.decode, "system": valueCode.codeSystem}}
+    fhir_resource: ResearchStudy
+    fhir_path: progressStatus.state.coding
+    fhir_index: progressStatus
+    usdm_class: extension studyProgressStatus
+    usdm_attribute: state
+
+  - item: progress status actual
+    usdm_path: |
+      (study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-studyProgressStatus/class1"])@$rp.$rp.extensionAttributes[url="https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-isActive"].
+      {$rp.id:valueBoolean}
+    fhir_resource: ResearchStudy
+    fhir_path: progressStatus.actual
+    fhir_index: progressStatus
+    usdm_class: extension studyProgressStatus
+    usdm_attribute: isActual
+
+  - item: progress status period
+    usdm_path: |
+      (study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-studyProgressStatus/class1"])@$rp.
+      {$rp.id: {"start" : $rp.extensionAttributes[url="https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-startDate"].valueString,
+                  "end" : $rp.extensionAttributes[url="https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-endDate"].valueString}}
+    fhir_resource: ResearchStudy
+    fhir_path: progressStatus.period
+    fhir_index: progressStatus
+    usdm_class: extension studyProgressStatus
+    usdm_attribute: "startDate, endDate"
+
