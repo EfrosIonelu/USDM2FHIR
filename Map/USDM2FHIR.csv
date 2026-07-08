@@ -395,3 +395,24 @@ Study Design type (from studyType),"study.versions.studyDesigns.studyType.(
 Study Design cohort design (uncontrolled when 0 cohorts),"study.versions.studyDesigns.(
   $count(population.cohorts) = 0 ? {id & ""_uncontrolled"": {""coding"": [{""system"": ""https://fevir.net/sevco"", ""code"": ""SEVCO:01016"", ""display"": ""uncontrolled cohort design""}]}} : null
 )",ResearchStudy,studyDesign,studyDesign,StudyDesign,population.cohorts
+Extension age range (artifact-useContext from plannedAge),"study.versions.studyDesigns.population.plannedAge.(
+  $minVal  := minValue.value;
+  $minUnit := minValue.unit.standardCode.decode;
+  $maxVal  := maxValue.value;
+  $maxUnit := maxValue.unit.standardCode.decode;
+  $minVal and $maxVal ?
+  {id: {
+    ""url"": ""http://hl7.org/fhir/StructureDefinition/artifact-useContext"",
+    ""valueUsageContext"": {
+      ""code"": {
+        ""system"": ""http://terminology.hl7.org/CodeSystem/usage-context-type"",
+        ""code"": ""age"",
+        ""display"": ""Age Range""
+      },
+      ""valueRange"": {
+        ""low"":  {""value"": $minVal,  ""unit"": $minUnit},
+        ""high"": {""value"": $maxVal,  ""unit"": $maxUnit}
+      }
+    }
+  }} : null
+)",ResearchStudy,extension,extension,PopulationDefinition,plannedAge

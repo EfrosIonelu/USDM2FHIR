@@ -12,7 +12,7 @@ setup:
 	@echo "✅ venv creat si dependentele instalate! Ruleaza: source venv/bin/activate"
 
 execute_example:
-	$(PYTHON) CreateFhir.py --map Map/USDM2FHIR.csv --usdm Input/NCT01750580_limited_tagged_resp.json --output Output/MyNewFile_2.json
+	$(PYTHON) CreateFhir.py --map Map/USDM2FHIR.csv --usdm Input/NCT01750580_limited_tagged_resp.json --output Output/MyNewFile.json
 
 # Merge all YAML mapping files into Map/USDM2FHIR.csv
 # Usage: make yaml-to-csv

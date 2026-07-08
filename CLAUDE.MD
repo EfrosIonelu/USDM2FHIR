@@ -25,12 +25,31 @@ USDM2FHIR/
 │   │   └── transform_controller.py# POST /transform  — main endpoint
 │   ├── services/
 │   │   └── transform_service.py   # Transformation logic without file I/O
+│   ├── config/
+│   │   └── mappings/              # ✏️ EDIT HERE — one YAML file per FHIR path group
+│   │       ├── 01_condition.yaml
+│   │       ├── 02_identifier.yaml
+│   │       ├── 03_label.yaml
+│   │       ├── 04_classifier.yaml
+│   │       ├── 05_objective.yaml
+│   │       ├── 06_purpose_type.yaml
+│   │       ├── 07_phase.yaml
+│   │       ├── 08_progress_status.yaml
+│   │       ├── 09_comparison_group.yaml
+│   │       ├── 10_site.yaml
+│   │       ├── 11_recruitment.yaml
+│   │       ├── 12_eligibility_criteria.yaml
+│   │       ├── 13_eligibility_group.yaml
+│   │       ├── 14_evidence_variable.yaml
+│   │       ├── 15_study_design.yaml
+│   │       └── 16_extension.yaml
 │   └── command/
 │       ├── jsonata_inspect.py     # CLI: metadata about a JSONata path
-│       └── jsonata_query.py       # CLI: actual value at a JSONata path
+│       ├── jsonata_query.py       # CLI: actual value at a JSONata path
+│       └── yaml_to_csv.py         # CLI: merge YAML files → Map/USDM2FHIR.csv
 │
 ├── Map/
-│   └── USDM2FHIR.csv             # USDM → FHIR mapping file
+│   └── USDM2FHIR.csv             # ⚠️ AUTO-GENERATED — do not edit directly, edit the YAML files
 │
 ├── Input/                         # ⚠️ DO NOT read these files directly — see rule below
 │   ├── NCT01750580_limited_tagged_resp.json   # Default input file (USDM)
@@ -59,11 +78,14 @@ All commands run with the Python from the virtualenv (`venv/bin/python`).
 # Initial setup — creates venv and installs dependencies
 make setup
 
-# Start the FastAPI API on port 8000
-make run
+# ✏️  WORKFLOW: edit a YAML file in app/config/mappings/, then:
+make yaml-to-csv          # regenerates Map/USDM2FHIR.csv from all YAML files
 
 # Run the transformation CLI example
 make execute_example
+
+# Start the FastAPI API on port 8000
+make run
 
 # Docker
 make docker-build
@@ -71,6 +93,56 @@ make docker-run
 make docker-stop
 make docker-push
 ```
+
+---
+
+## YAML mapping files (how to add/edit mappings)
+
+**Never edit `Map/USDM2FHIR.csv` directly** — it is auto-generated.
+
+Mappings live in `app/config/mappings/`, one YAML file per FHIR path group,
+named with a numeric prefix so they merge in the right order.
+
+### YAML file format
+
+```yaml
+description: "Human-readable description of this group"
+
+mappings:
+  - item: "Row name (shown in CSV)"
+    usdm_path: |
+      study.versions.studyDesigns.(
+        ... JSONata expression — no escaping needed, use " naturally ...
+      )
+    fhir_resource: ResearchStudy          # or Group, Group-all, Location, EvidenceVariable
+    fhir_path: extension                  # dot-separated FHIR path
+    fhir_index: extension                 # grouping key for array indexing (optional)
+    usdm_class: PopulationDefinition      # USDM class name (optional, documentation only)
+    usdm_attribute: plannedAge            # USDM attribute name (optional, documentation only)
+```
+
+**Key advantage of YAML over CSV:** JSONata expressions with `"` quotes, `{}`, `[]`
+are written naturally — no `""` escaping needed.
+
+### After editing any YAML file, regenerate the CSV:
+
+```bash
+make yaml-to-csv
+# or directly:
+venv/bin/python -m app.command.yaml_to_csv
+```
+
+Optional flags:
+```bash
+make yaml-to-csv MAPPINGS_DIR=app/config/mappings OUTPUT=Map/USDM2FHIR.csv
+```
+
+### Adding a new mapping group
+
+1. Create `app/config/mappings/NN_my_group.yaml` (choose the next number)
+2. Fill in the `mappings:` list following the format above
+3. Run `make yaml-to-csv`
+4. Run `make execute_example` to verify
 
 ---
 
