@@ -6,5 +6,28 @@ mappings:
       {"eligibility-criteria": {"reference": "#eligibility-criteria", "type":"Group"}}
     fhir_resource: ResearchStudy
     fhir_path: recruitment.eligibility
-    fhir_index: recruitment
+
+  - item: Eligibility display (official or short title)
+    usdm_path: |
+      (
+        $officialTitle := study.versions.titles[type.code="C207616"].text;
+        $simpleTitle := study.versions.titles[type.code="C207615"].text;
+        $title := $officialTitle ? $officialTitle : $simpleTitle;
+        $title ? {"eligibility-criteria": "USDM Eligibility Criteria for " & $title} : null
+      )
+    fhir_resource: ResearchStudy
+    fhir_path: recruitment.eligibility.display
+    usdm_class: StudyTitle
+    usdm_attribute: text
+
+  - item: Planned enrollment number
+    usdm_path: |
+      study.versions.studyDesigns.(
+        $v := population.plannedEnrollmentNumber.value;
+        $v != null ? {id: $floor($v)} : null
+      )
+    fhir_resource: ResearchStudy
+    fhir_path: recruitment.targetNumber
+    usdm_class: PopulationDefinition
+    usdm_attribute: plannedEnrollmentNumber
 

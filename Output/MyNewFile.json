@@ -391,14 +391,14 @@
       }
     }
   ],
-  "recruitment": [
-    {
-      "eligibility": {
-        "reference": "#eligibility-criteria",
-        "type": "Group"
-      }
-    }
-  ],
+  "recruitment": {
+    "eligibility": {
+      "reference": "#eligibility-criteria",
+      "type": "Group",
+      "display": "USDM Eligibility Criteria for A Phase 1 Study of BMS-986015, an Anti-KIR Monoclonal Antibody, Administered With Ipilimumab, an Anti-CTLA4 Monoclonal Antibody, in Subjects With Select Advanced Solid Tumors"
+    },
+    "targetNumber": 150
+  },
   "site": [
     {
       "reference": "#MS001",

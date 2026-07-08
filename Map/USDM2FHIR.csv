@@ -151,7 +151,17 @@ location id,study.versions.organizations.managedSites.{id: id},Location,id,,,
 site name,study.versions.organizations.managedSites.{id: label},Location,name,,StudySite,label
 site type,"study.versions.organizations.managedSites.{id: ""location""}",Location,type,,,
 site country,study.versions.organizations.managedSites.{id: country.code},Location,address.country,,StudySite,country
-Reference to group of criteria,"{""eligibility-criteria"": {""reference"": ""#eligibility-criteria"", ""type"":""Group""}}",ResearchStudy,recruitment.eligibility,recruitment,,
+Reference to group of criteria,"{""eligibility-criteria"": {""reference"": ""#eligibility-criteria"", ""type"":""Group""}}",ResearchStudy,recruitment.eligibility,,,
+Eligibility display (official or short title),"(
+  $officialTitle := study.versions.titles[type.code=""C207616""].text;
+  $simpleTitle := study.versions.titles[type.code=""C207615""].text;
+  $title := $officialTitle ? $officialTitle : $simpleTitle;
+  $title ? {""eligibility-criteria"": ""USDM Eligibility Criteria for "" & $title} : null
+)",ResearchStudy,recruitment.eligibility.display,,StudyTitle,text
+Planned enrollment number,"study.versions.studyDesigns.(
+  $v := population.plannedEnrollmentNumber.value;
+  $v != null ? {id: $floor($v)} : null
+)",ResearchStudy,recruitment.targetNumber,,PopulationDefinition,plannedEnrollmentNumber
 Eligibility overall list id,"{""eligibility-criteria"": ""eligibility-criteria""}",Group-all,id,,,
 combination method general,"{""eligibility-criteria"": ""all-of""}",Group-all,combinationMethod,,,
 Eligibility criteria text,"study.versions@$sv.(
