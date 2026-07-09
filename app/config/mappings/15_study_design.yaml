@@ -8,11 +8,11 @@ mappings:
           $c = "C98388" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01001", "display": "interventional research"} :
           $c = "C16084" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01002", "display": "observational research"} :
           $c = "C98722" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01038", "display": "expanded access study"} :
-          $c = "C129000" ? {"system": "https://fevir.net/sevco", "code": "SEVCO:01042", "display": "secondary data collection from a registry"} :
           null
         };
-        $result := $Recode(code);
-        $result ? {id: {"coding": [$result]}} : null
+        $sevco := $Recode(code);
+        $nci := {"system": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl", "code": code, "display": decode};
+        $sevco ? {id: {"coding": [$sevco, $nci]}} : null
       )
     fhir_resource: ResearchStudy
     fhir_path: studyDesign

@@ -3,7 +3,7 @@
   "id": "123",
   "meta": {
     "versionId": "1",
-    "lastUpdated": "2026-07-08T00:00:00Z"
+    "lastUpdated": "2026-07-09T00:00:00Z"
   },
   "classifier": [
     {
@@ -432,6 +432,11 @@
           "system": "https://fevir.net/sevco",
           "code": "SEVCO:01001",
           "display": "interventional research"
+        },
+        {
+          "system": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "code": "C98388",
+          "display": "Interventional Study"
         }
       ]
     },
@@ -452,7 +457,7 @@
       "id": "eligibility-criteria",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "characteristic": [
         {
@@ -559,7 +564,7 @@
       "id": "ExtensionClass_ExpRespNode_1",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "characteristic": [
         {
@@ -682,7 +687,7 @@
       "id": "ExtensionClass_ExpResp_1",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "characteristic": [
         {
@@ -732,7 +737,7 @@
       "id": "ExtensionClass_ExpResp_5",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "characteristic": [
         {
@@ -781,7 +786,7 @@
       "id": "MS001",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -794,7 +799,7 @@
       "id": "MS002",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -807,7 +812,7 @@
       "id": "MS003",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -820,7 +825,7 @@
       "id": "MS004",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -833,7 +838,7 @@
       "id": "MS005",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -846,7 +851,7 @@
       "id": "MS006",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -859,7 +864,7 @@
       "id": "BiomedicalConcept_01",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-08T00:00:00Z"
+        "lastUpdated": "2026-07-09T00:00:00Z"
       },
       "classifier": {
         "code": "measurement",
