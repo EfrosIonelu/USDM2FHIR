@@ -3,8 +3,9 @@ PIP = venv/bin/pip
 IMAGE_NAME = usdm2fhir
 REGISTRY = ghcr.io/efrosionelu/usdm2fhir
 PORT = 8000
+FHIR_VALIDATOR = $(shell which fhir-validator 2>/dev/null || echo /Users/fybromania/Library/Python/3.9/bin/fhir-validator)
 
-.PHONY: setup execute_example run jsonata-inspect jsonata-query yaml-to-csv docker-build docker-run docker-stop docker-push
+.PHONY: setup execute_example run jsonata-inspect jsonata-query yaml-to-csv docker-build docker-run docker-stop docker-push validate
 
 setup:
 	python3 -m venv venv
@@ -49,4 +50,9 @@ docker-stop:
 docker-push:
 	docker build -t $(REGISTRY):latest .
 	docker push $(REGISTRY):latest
-
+# Requires fhir-validator installed locally (Python <3.12 only):
+#   pip3 install fhir-validator
+# Also requires the FHIR R4 schema in schemas/r4/fhir.schema.json — download with:
+#   mkdir -p schemas/r4 && curl -L https://www.hl7.org/fhir/R4/fhir.schema.json.zip -o /tmp/fhir.schema.json.zip && unzip -o /tmp/fhir.schema.json.zip -d schemas/r4/
+validate:
+	$(FHIR_VALIDATOR) --path ./Output/MyNewFile.json --action validate

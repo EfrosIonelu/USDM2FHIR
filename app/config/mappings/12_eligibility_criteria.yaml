@@ -25,11 +25,31 @@ mappings:
 
   - item: Eligibility criteria code
     usdm_path: |
-      study.versions.studyDesigns.eligibilityCriteria.{id: label}
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+          $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+          {$ex.id: $respIds ? "Defined by Reference" : "Defined by CodeableConcept"}
+        )
+      )
     fhir_resource: Group-all
     fhir_path: characteristic.code.text
     fhir_index: characteristic
     usdm_class: EligibilityCriterionItem
+
+  - item: Eligibility criteria valueCodeableConcept text
+    usdm_path: |
+      study.versions@$sv.(
+        $sv.studyDesigns.eligibilityCriteria@$ex.(
+          $respIds := $sv.extensionAttributes.extensionAttributes.valueExtensionClass[url="https://cdisc.org/usdm/extension-ExpResponse/class_ExpectedResponse" and extensionAttributes[valueId=$ex.id]].id;
+          $text := $sv.eligibilityCriterionItems[id=$ex.criterionItemId].text;
+          $respIds ? {} : {$ex.id: $text}
+        )
+      )
+    fhir_resource: Group-all
+    fhir_path: characteristic.valueCodeableConcept.text
+    fhir_index: characteristic
+    usdm_class: EligibilityCriterionItem
+    usdm_attribute: text
 
   - item: "Exclusion criterion true/false?"
     usdm_path: |

@@ -12,16 +12,7 @@ mappings:
 
   - item: Condition code
     usdm_path: |
-      study.versions.(
-        $bmCodes := biomedicalConcepts.code.standardCode.code;
-        studyDesigns.indications.{
-          id: {
-            "code": codes[$not(code in $bmCodes)].code,
-            "display": codes[$not(code in $bmCodes)].decode,
-            "system": codes[$not(code in $bmCodes)].codeSystem
-          }
-        }
-      )
+      study.versions.studyDesigns.indications.{id: {"code": codes.code, "display": codes.decode, "system": codes.codeSystem}}
     fhir_resource: ResearchStudy
     fhir_path: condition.coding
     fhir_index: condition

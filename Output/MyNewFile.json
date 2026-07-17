@@ -3,7 +3,7 @@
   "id": "123",
   "meta": {
     "versionId": "1",
-    "lastUpdated": "2026-07-09T00:00:00Z"
+    "lastUpdated": "2026-07-10T00:00:00Z"
   },
   "classifier": [
     {
@@ -457,12 +457,12 @@
       "id": "eligibility-criteria",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "characteristic": [
         {
           "code": {
-            "text": "Indication"
+            "text": "Defined by Reference"
           },
           "description": "Histologic confirmation of one of the following solid tumors that is advanced (unresectable or metastatic) for dose escalation or cohort expansion:Non-Small Cell Lung Cancer (NSCLC), Castrate Resistant Prostate Cancer (CRPC), Melanoma (MEL)",
           "exclude": false,
@@ -473,42 +473,57 @@
         },
         {
           "code": {
-            "text": "Autoimmune Disease"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease",
-          "exclude": true
+          "exclude": true,
+          "valueCodeableConcept": {
+            "text": "Subjects with active autoimmune disease, uncontrolled or significant cardiovascular disease"
+          }
         },
         {
           "code": {
-            "text": "Prior Therapy"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody",
-          "exclude": true
+          "exclude": true,
+          "valueCodeableConcept": {
+            "text": "Prior therapy with anti- Cytotoxic T-Lymphocyte Antigen 4 (CTLA4) antibody or anti- Killer cell immunoglobulin-like receptor (KIR) antibody"
+          }
         },
         {
           "code": {
-            "text": "Neuropathy"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Grade 2 neuropathy",
-          "exclude": true
+          "exclude": true,
+          "valueCodeableConcept": {
+            "text": "Grade 2 neuropathy"
+          }
         },
         {
           "code": {
-            "text": "Lesions"
+            "text": "Defined by CodeableConcept"
           },
           "description": "At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria",
-          "exclude": false
+          "exclude": false,
+          "valueCodeableConcept": {
+            "text": "At least one measurable lesion at baseline by Computed tomography (CT) or Magnetic resonance imaging (MRI) as per Response Evaluation Criteria in Solid Tumors (RECIST) 1.1 criteria"
+          }
         },
         {
           "code": {
-            "text": "Biopsies"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk",
-          "exclude": false
+          "exclude": false,
+          "valueCodeableConcept": {
+            "text": "Biopsies: Subjects in the melanoma cohort must have at least 1 tumor site that can be biopsied at acceptable clinical risk"
+          }
         },
         {
           "code": {
-            "text": "ECOG"
+            "text": "Defined by Reference"
           },
           "description": "Eastern Cooperative Oncology Group (ECOG) status of 0 or 1",
           "exclude": false,
@@ -519,35 +534,47 @@
         },
         {
           "code": {
-            "text": "Life expectancy"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Estimated life expectancy of >= 12 weeks",
-          "exclude": false
+          "exclude": false,
+          "valueCodeableConcept": {
+            "text": "Estimated life expectancy of >= 12 weeks"
+          }
         },
         {
           "code": {
-            "text": "Lab values"
+            "text": "Defined by CodeableConcept"
           },
           "description": "White blood cell (WBC) >=2000/microL, Neutrophils >=1500/microL, Platelets >= 100x1000/microL, Hemoglobin >= 8.5 g/dL, Creatinine Clearance <= 1.5 X upper limit of normal (ULN) mL/min, Alanine aminotransferase (ALT) and Aspartate aminotransferase (AST) <= 3x ULN",
-          "exclude": false
+          "exclude": false,
+          "valueCodeableConcept": {
+            "text": "White blood cell (WBC) >=2000/microL, Neutrophils >=1500/microL, Platelets >= 100x1000/microL, Hemoglobin >= 8.5 g/dL, Creatinine Clearance <= 1.5 X upper limit of normal (ULN) mL/min, Alanine aminotransferase (ALT) and Aspartate aminotransferase (AST) <= 3x ULN"
+          }
         },
         {
           "code": {
-            "text": "Thyroid function"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Normal Thyroid function or be on stable hormone supplementation",
-          "exclude": false
+          "exclude": false,
+          "valueCodeableConcept": {
+            "text": "Normal Thyroid function or be on stable hormone supplementation"
+          }
         },
         {
           "code": {
-            "text": "Prior Study"
+            "text": "Defined by CodeableConcept"
           },
           "description": "Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint",
-          "exclude": true
+          "exclude": true,
+          "valueCodeableConcept": {
+            "text": "Participation in any prior clinical study with BMS-936558 or ipilimumab that has overall survival listed as a primary/co-primary endpoint"
+          }
         },
         {
           "code": {
-            "text": "Brain metastasis"
+            "text": "Defined by Reference"
           },
           "description": "Subjects with known or suspected brain metastasis",
           "exclude": true,
@@ -564,7 +591,7 @@
       "id": "ExtensionClass_ExpRespNode_1",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "characteristic": [
         {
@@ -687,7 +714,7 @@
       "id": "ExtensionClass_ExpResp_1",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "characteristic": [
         {
@@ -737,7 +764,7 @@
       "id": "ExtensionClass_ExpResp_5",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "characteristic": [
         {
@@ -786,7 +813,7 @@
       "id": "MS001",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -799,7 +826,7 @@
       "id": "MS002",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -812,7 +839,7 @@
       "id": "MS003",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -825,7 +852,7 @@
       "id": "MS004",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -838,7 +865,7 @@
       "id": "MS005",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -851,7 +878,7 @@
       "id": "MS006",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "address": {
         "country": "USA"
@@ -864,7 +891,7 @@
       "id": "BiomedicalConcept_01",
       "meta": {
         "versionId": "1",
-        "lastUpdated": "2026-07-09T00:00:00Z"
+        "lastUpdated": "2026-07-10T00:00:00Z"
       },
       "classifier": {
         "code": "measurement",
