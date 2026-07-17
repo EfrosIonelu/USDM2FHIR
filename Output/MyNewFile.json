@@ -449,7 +449,7 @@
         {
           "code": "treatment",
           "display": "Treatment Study",
-          "system": "http://terminology.hl7.org/CodeSystem/research-study-purpose-type"
+          "system": "http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type"
         }
       ]
     }

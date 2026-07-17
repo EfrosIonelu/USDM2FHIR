@@ -82,7 +82,7 @@ purpose Intent,"study.versions.studyDesigns.intentTypes.(
         $c=""C71486"" ? ""supportive-care"" : $c=""C15245"" ? ""health-services-research"" : $c=""C15714"" ? ""basic-science"" : $c=""C139174"" ? ""device-feasibility""};
     $RecodeDisplay := function($c){$c=""C49656"" ? ""Treatment Study"" : $c=""C49657"" ? ""Prevention Study"" : $c=""C49653"" ? ""Diagnostic Study"" : $c=""C71485"" ? ""Screening Study"" :
         $c=""C71486"" ? ""Supportive Care Study"" : $c=""C15245"" ? ""Health Services Research"" : $c=""C15714"" ? ""Basic Science"" : $c=""C139174"" ? ""Device Feasibility Study""};
-{id: {""code"": $Recode(code), ""display"": $RecodeDisplay(code), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-purpose-type""}})",ResearchStudy,purposeType.coding,purposeType,InterventionalStudyDesign,intentTypes
+{id: {""code"": $Recode(code), ""display"": $RecodeDisplay(code), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type""}})",ResearchStudy,purposeType.coding,purposeType,InterventionalStudyDesign,intentTypes
 purpose SubType,"study.versions.studyDesigns.subTypes.(
     $Recode := function($c){$c=""C49667"" ? ""safety"" : $c=""C49666"" ? ""efficacy"" : $c=""C49663"" ? ""pharmacokinetic"" :
                             $c=""C49662"" ? ""pharmacodynamic"" : $c=""C49665"" ? ""bioequivalence"" : $c=""C127803"" ? ""dose-response"" :
@@ -92,7 +92,7 @@ purpose SubType,"study.versions.studyDesigns.subTypes.(
                             $c=""C49662"" ? ""Pharmacodynamic Study"" : $c=""C49665"" ? ""Bioequivalence Study"" : $c=""C127803"" ? ""Dose-Response Study"" :
                             $c=""C129001"" ? ""Pharmacogenetic Study"" : $c=""C49661"" ? ""Pharmacogenomic Study"": $c=""C215653"" ? ""Incidence Study"" :
                             $c=""C215675"" ? ""Prevalence Study""}
-{id: $Recode(code) ? {""code"": $Recode(code), ""display"": $RecodeDisplay(code), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-purpose-type""}
+{id: $Recode(code) ? {""code"": $Recode(code), ""display"": $RecodeDisplay(code), ""system"": ""http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type""}
  : {""text"": decode}})",ResearchStudy,purposeType.coding,purposeType,InterventionalStudyDesign,subTypes
 Study Phase,"study.versions.studyDesigns.studyPhase.(
   $cdiscToFhirCode := function($c) {
