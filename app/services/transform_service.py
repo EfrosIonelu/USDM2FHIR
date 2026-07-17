@@ -38,7 +38,7 @@ def _get_usdm_info_from_data(map_file: str, data: dict):
                 try:
                     x = ast.literal_eval(usdm_result)
                 except (ValueError, SyntaxError):
-                    continue
+                    continue  # skip — x would retain previous iteration's value
 
             fhir_resourcename = df.iloc[i, 2]
             fhir_path = df.iloc[i, 3]

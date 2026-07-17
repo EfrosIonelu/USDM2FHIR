@@ -141,11 +141,11 @@ progress status actual,"(study.versions.extensionAttributes.extensionAttributes.
 progress status period,"(study.versions.extensionAttributes.extensionAttributes.valueExtensionClass[url=""https://cdisc.org/usdm/extension-studyProgressStatus/class1""])@$rp.
 {$rp.id: {""start"" : $rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-startDate""].valueString,
             ""end"" : $rp.extensionAttributes[url=""https://cdisc.org/usdm/extension-studyProgressStatus-1/attribute-endDate""].valueString}}",ResearchStudy,progressStatus.period,progressStatus,extension studyProgressStatus,"startDate, endDate"
-Arm name,study.versions.studyDesigns.arms.label,ResearchStudy,comparisonGroup.name,comparisonGroup,StudyArm,label
-Arm description,study.versions.studyDesigns.arms.description,ResearchStudy,comparisonGroup.description,comparisonGroup,StudyArm,description
-Cohort name,study.versions.studyDesigns.population.cohorts.label,ResearchStudy,comparisonGroup.name,comparisonGroup,studyCohort,label
-Cohort description,study.versions.studyDesigns.population.cohorts.description,ResearchStudy,comparisonGroup.description,comparisonGroup,studyCohort,description
-Cohort planned number,study.versions.studyDesigns.population.cohorts.plannedEnrollmentNumber.value,ResearchStudy,comparisonGroup.targetNumber,comparisonGroup,studyCohort,plannedEnrollmentNumber
+Arm name,study.versions.studyDesigns.arms.{id: label},ResearchStudy,comparisonGroup.name,comparisonGroup,StudyArm,label
+Arm description,study.versions.studyDesigns.arms.{id: description},ResearchStudy,comparisonGroup.description,comparisonGroup,StudyArm,description
+Cohort name,study.versions.studyDesigns.population.cohorts.{id: label},ResearchStudy,comparisonGroup.name,comparisonGroup,studyCohort,label
+Cohort description,study.versions.studyDesigns.population.cohorts.{id: description},ResearchStudy,comparisonGroup.description,comparisonGroup,studyCohort,description
+Cohort planned number,study.versions.studyDesigns.population.cohorts.{id: plannedEnrollmentNumber.value},ResearchStudy,comparisonGroup.targetNumber,comparisonGroup,studyCohort,plannedEnrollmentNumber
 location reference,"study.versions.organizations.managedSites.{id: {""reference"": ""#"" & id, ""type"":""Location""}}",ResearchStudy,site,site,StudySite,id
 location id,study.versions.organizations.managedSites.{id: id},Location,id,,,
 site name,study.versions.organizations.managedSites.{id: label},Location,name,,StudySite,label

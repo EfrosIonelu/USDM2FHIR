@@ -63,15 +63,7 @@
   ],
   "comparisonGroup": [
     {
-      "name": {
-        "start": "2012-12",
-        "end": "2015-04"
-      }
-    },
-    {
-      "name": {
-        "start": "2015-04"
-      }
+      "name": "Lirilumab + Ipilimumab"
     }
   ],
   "condition": [

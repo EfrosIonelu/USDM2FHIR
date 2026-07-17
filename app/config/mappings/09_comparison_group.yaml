@@ -3,7 +3,7 @@ description: "Comparison group mappings — ResearchStudy.comparisonGroup (arms 
 mappings:
   - item: Arm name
     usdm_path: |
-      study.versions.studyDesigns.arms.label
+      study.versions.studyDesigns.arms.{id: label}
     fhir_resource: ResearchStudy
     fhir_path: comparisonGroup.name
     fhir_index: comparisonGroup
@@ -12,7 +12,7 @@ mappings:
 
   - item: Arm description
     usdm_path: |
-      study.versions.studyDesigns.arms.description
+      study.versions.studyDesigns.arms.{id: description}
     fhir_resource: ResearchStudy
     fhir_path: comparisonGroup.description
     fhir_index: comparisonGroup
@@ -21,7 +21,7 @@ mappings:
 
   - item: Cohort name
     usdm_path: |
-      study.versions.studyDesigns.population.cohorts.label
+      study.versions.studyDesigns.population.cohorts.{id: label}
     fhir_resource: ResearchStudy
     fhir_path: comparisonGroup.name
     fhir_index: comparisonGroup
@@ -30,7 +30,7 @@ mappings:
 
   - item: Cohort description
     usdm_path: |
-      study.versions.studyDesigns.population.cohorts.description
+      study.versions.studyDesigns.population.cohorts.{id: description}
     fhir_resource: ResearchStudy
     fhir_path: comparisonGroup.description
     fhir_index: comparisonGroup
@@ -39,7 +39,7 @@ mappings:
 
   - item: Cohort planned number
     usdm_path: |
-      study.versions.studyDesigns.population.cohorts.plannedEnrollmentNumber.value
+      study.versions.studyDesigns.population.cohorts.{id: plannedEnrollmentNumber.value}
     fhir_resource: ResearchStudy
     fhir_path: comparisonGroup.targetNumber
     fhir_index: comparisonGroup

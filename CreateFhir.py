@@ -45,8 +45,8 @@ def get_USDM_info(MapFile,USDMFile):
                     except (ValueError, SyntaxError):
                         print(f"Warning: Could not parse row {i} at all, copied directly.")
                         print(f"USDM_Result: {USDM_Result}")
-                        
-                    
+                        continue  # skip this row — x would retain previous iteration's value
+
                 FHIR_resourcename= df.iloc[i, 2]
                 FHIR_path= df.iloc[i, 3]
                 FHIR_group= df.iloc[i, 4]
