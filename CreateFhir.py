@@ -159,6 +159,23 @@ def jsonpath_contains_class(path: str, class_name: str) -> bool:
             return True
     return False
 
+def wrap_coding_arrays(obj):
+    """
+    Recursively walk a FHIR resource dict and wrap any 'coding' value
+    that is a plain dict {} into a list [{}], as required by FHIR spec.
+    Already-correct lists are left untouched.
+    """
+    if isinstance(obj, dict):
+        for key, val in list(obj.items()):
+            if key == "coding" and isinstance(val, dict):
+                obj[key] = [val]
+            else:
+                wrap_coding_arrays(val)
+    elif isinstance(obj, list):
+        for item in obj:
+            wrap_coding_arrays(item)
+
+
 def create_fhir_resource(ResultMap, RowIds, resource_type, data):
     # Get the mapping information from csv Mapping file based on the USDM mapping
     # save the corresponding information to the FHIR message
@@ -167,8 +184,11 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
         "id": data.get("id"),
         "meta": {
             "versionId": data.get("versionId"),
-            "lastUpdated": data.get("lastUpdated")
-        },        
+            "lastUpdated": data.get("lastUpdated"),
+            "profile": [
+                "http://hl7.org/fhir/uv/ebm/StructureDefinition/study-registry-record"
+            ]
+        },
     }    
     ResultMap = sorted(ResultMap, key=lambda t: (t[1], t[0]))
     pairs=[]
@@ -240,6 +260,7 @@ def create_fhir_resource(ResultMap, RowIds, resource_type, data):
 
     x = paths_to_json(pairs)
     fhir_resource.update(x)
+    wrap_coding_arrays(fhir_resource)
     return fhir_resource
 
 
