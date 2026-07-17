@@ -14,7 +14,7 @@ mappings:
     usdm_path: |
       study.versions.studyIdentifiers.{id: "study identifier"}
     fhir_resource: ResearchStudy
-    fhir_path: identifier.codeableConcept.text
+    fhir_path: identifier.type.text
     fhir_index: identifier
     usdm_class: StudyIdentifier
 

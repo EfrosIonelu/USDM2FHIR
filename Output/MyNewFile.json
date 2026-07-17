@@ -133,17 +133,17 @@
       "assigner": {
         "display": "Bristol-Myers Squibb"
       },
-      "codeableConcept": {
+      "type": {
         "text": "study identifier"
       },
       "use": "official",
       "value": "CA223-002"
     },
     {
-      "codeableConcept": {
+      "system": "http://terminology.hl7.org/NamingSystem/ClinicalTrials-Gov",
+      "type": {
         "text": "study identifier"
       },
-      "system": "http://terminology.hl7.org/NamingSystem/ClinicalTrials-Gov",
       "use": "official",
       "value": "NCT01750580"
     }
